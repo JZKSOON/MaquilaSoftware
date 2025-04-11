@@ -1,14 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="controllers.LoginViewController"
-            prefHeight="400.0" prefWidth="600.0">
+<BorderPane fx:controller="controllers.LoginViewController"
+            xmlns="http://javafx.com/javafx/17.0.12"
+            xmlns:fx="http://javafx.com/fxml/1">
 
-</AnchorPane>
+    <!-- Panel Izquierdo -->
+    <left>
+        <VBox prefWidth="330.0" style="-fx-background-color: #2e658a;">
+            <children>
+                <ImageView fitHeight="282.0" fitWidth="318.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../Imagenes/IMG_1152.png"/>
+                    </image>
+                </ImageView>
+                <VBox style="-fx-background-color: #1c3f60;" VBox.vgrow="ALWAYS"/>
+            </children>
+        </VBox>
+    </left>
+
+    <!-- Centro -->
+    <center>
+        <AnchorPane style="-fx-background-color: #2a5277;">
+            <children>
+                <!-- Título adaptativo -->
+                <Label text="PRODUCCION POR CORTE" textFill="WHITE"
+                       AnchorPane.topAnchor="30.0" AnchorPane.leftAnchor="250.0">
+                    <font>
+                        <Font name="System Bold Italic" size="60.0" />
+                    </font>
+                </Label>
+
+                <!-- Panel grande izquierdo -->
+                <Pane style="-fx-background-color: #ffffff;"
+                      AnchorPane.topAnchor="150.0"
+                      AnchorPane.leftAnchor="30.0"
+                      AnchorPane.bottomAnchor="30.0"
+                      AnchorPane.rightAnchor="350.0"/>
+
+                <!-- Panel superior derecho -->
+                <Pane style="-fx-background-color: #ffffff;"
+                      AnchorPane.topAnchor="150.0"
+                      AnchorPane.rightAnchor="30.0"
+                      prefHeight="390.0"
+                      prefWidth="268.0"/>
+
+                <!-- Panel inferior derecho -->
+                <Pane style="-fx-background-color: #ffffff;"
+                      AnchorPane.bottomAnchor="30.0"
+                      AnchorPane.rightAnchor="30.0"
+                      prefHeight="390.0"
+                      prefWidth="268.0"/>
+            </children>
+        </AnchorPane>
+    </center>
+
+</BorderPane>
