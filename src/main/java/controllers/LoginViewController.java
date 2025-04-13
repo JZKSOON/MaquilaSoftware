@@ -43,9 +43,24 @@ public class LoginViewController
             try {
                 AbrirViewAdmin((Stage) ((Node) event.getSource()).getScene().getWindow());
             } catch (Exception e) {}
+
+
+
         }
         else {
-            mostrarAlerta("Acceso Denegado","Usuario o contraseña incorrecto");
+
+            if(usuario.equals("cliente") && contraseña.equals("1234")){
+                mostrarAlerta("Acceso Correcto", "Ingresando como cliente");
+                Stage stage = (Stage) BtnIngresar.getScene().getWindow();
+                try {
+                    AbrirViewCliente((Stage) ((Node) event.getSource()).getScene().getWindow());
+                } catch (Exception e) {}
+            }
+            else{
+                mostrarAlerta("Acceso Denegado","Usuario o contraseña incorrecto");
+
+            }
+
         }
     }
 
@@ -65,6 +80,22 @@ public class LoginViewController
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Vista Administrador");
+        stage.setMaximized(true);
+        stage.show();
+
+        //No necesario
+        Stage loginStage = (Stage) BtnIngresar.getScene().getWindow();
+        loginStage.close();
+    }
+
+    public void AbrirViewCliente(Stage window) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(Paths.MainViewClient));
+        Parent root = loader.load();
+
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Vista Cliente");
         stage.setMaximized(true);
         stage.show();
 
