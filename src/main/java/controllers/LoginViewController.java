@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
 import javafx.stage.Stage;
+import utils.Paths;
 
 import java.io.IOException;
 
@@ -47,6 +48,8 @@ public class LoginViewController
             mostrarAlerta("Acceso Denegado","Usuario o contraseña incorrecto");
         }
     }
+
+
     private void mostrarAlerta(String titulo, String mensaje){
         Alert alerta = new Alert(Alert.AlertType.INFORMATION);
         alerta.setTitle(titulo);
@@ -55,7 +58,7 @@ public class LoginViewController
         alerta.showAndWait();
     }
     public void AbrirViewAdmin(Stage window) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/MainViewAdm.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(Paths.MainViewAdm));
         Parent root = loader.load();
 
         Stage stage = new Stage();
