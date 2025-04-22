@@ -16,7 +16,7 @@ public class App extends Application {
     public void start(Stage stage) throws Exception {
 
         //Iniciar con Ventana de Login
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/LoginView.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/Interfaz/LoginView.fxml"));
         Parent root = loader.load();
 
         Scene scene = new Scene(root);
