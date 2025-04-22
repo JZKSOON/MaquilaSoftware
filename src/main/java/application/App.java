@@ -20,9 +20,9 @@ public class App extends Application {
         Parent root = loader.load();
 
         Scene scene = new Scene(root);
-        stage.setMaximized(true);
+        stage.setMaximized(false);
         stage.setScene(scene);
-        stage.setTitle("Login");
+        stage.setTitle("Admin");
         stage.show();
     }
 }

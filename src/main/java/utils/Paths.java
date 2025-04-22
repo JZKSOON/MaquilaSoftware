@@ -4,7 +4,5 @@ public class Paths {
 
     public static final String MainViewAdm = "..//Views//MainViewAdm.fxml";
     public static final String LoginView = "..//Views//LoginView.fxml";
-
-
-    public static String MainViewClient = "..//Views//MainViewClient.fxml";
+    public static final String MainMaqView = "..//Views//MainMaqView.fxml";
 }

@@ -1,64 +1,119 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:controller="controllers.LoginViewController"
-            xmlns="http://javafx.com/javafx/17.0.12"
-            xmlns:fx="http://javafx.com/fxml/1">
-
-    <!-- Panel Izquierdo -->
-    <left>
-        <VBox prefWidth="330.0" style="-fx-background-color: #2e658a;">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainViewAdmController">
+    <children>
+        <VBox prefHeight="800.0" prefWidth="240.0" style="-fx-background-color: #2e658a;">
             <children>
-                <ImageView fitHeight="282.0" fitWidth="318.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@../Imagenes/IMG_1152.png"/>
-                    </image>
-                </ImageView>
-                <VBox style="-fx-background-color: #1c3f60;" VBox.vgrow="ALWAYS"/>
+                <ImageView fitHeight="145.0" fitWidth="244.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS" />
+                <Button fx:id="btnInicio" mnemonicParsing="false" prefHeight="85.0" prefWidth="300.0" style="-fx-background-color: #1c3f60;" text="INICIO" onAction="#handleInicio" textFill="WHITE" VBox.vgrow="ALWAYS">
+                    <font>
+                        <Font name="Old Antic Outline" size="25.0" />
+                    </font>
+                    <VBox.margin>
+                        <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                    </VBox.margin>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </Button>
+                <Button fx:id="btnCliente" mnemonicParsing="false" prefHeight="85.0" prefWidth="300.0" style="-fx-background-color: #1c3f60;" text="CLIENTE" onAction="#handleCliente" textFill="WHITE" VBox.vgrow="ALWAYS">
+                    <font>
+                        <Font name="Old Antic Outline" size="25.0" />
+                    </font>
+                    <VBox.margin>
+                        <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                    </VBox.margin>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </Button>
+                <Button fx:id="btnMaquilas" mnemonicParsing="false" prefHeight="85.0" prefWidth="300.0" style="-fx-background-color: #1c3f60;" text="MAQUILAS" onAction="#handleMaquilas" textFill="WHITE" VBox.vgrow="ALWAYS">
+                    <font>
+                        <Font name="Old Antic Outline" size="25.0" />
+                    </font>
+                    <VBox.margin>
+                        <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                    </VBox.margin>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </Button>
+                <Button fx:id="btnConfeccion" mnemonicParsing="false" prefHeight="85.0" prefWidth="300.0" style="-fx-background-color: #1c3f60;" text="CONFECCION" onAction="#handleConfeccion" textFill="WHITE" VBox.vgrow="ALWAYS">
+                    <font>
+                        <Font name="Old Antic Outline" size="25.0" />
+                    </font>
+                    <VBox.margin>
+                        <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                    </VBox.margin>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </Button>
+                <Button fx:id="btnLavanderia" mnemonicParsing="false" prefHeight="85.0" prefWidth="300.0" style="-fx-background-color: #1c3f60;" text="LAVANDERIA" onAction="#handleLavanderia" textFill="WHITE" VBox.vgrow="ALWAYS">
+                    <font>
+                        <Font name="Old Antic Outline" size="25.0" />
+                    </font>
+                    <VBox.margin>
+                        <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                    </VBox.margin>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </Button>
+                <Button fx:id="btnEmpaque" mnemonicParsing="false" prefHeight="85.0" prefWidth="300.0" style="-fx-background-color: #1c3f60;" text="EMPAQUE" onAction="#handleEmpaque" textFill="WHITE" VBox.vgrow="ALWAYS">
+                    <font>
+                        <Font name="Old Antic Outline" size="25.0" />
+                    </font>
+                    <VBox.margin>
+                        <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                    </VBox.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+                </Button>
+                <Button fx:id="btnRegistro" mnemonicParsing="false" prefHeight="85.0" prefWidth="300.0" style="-fx-background-color: #1c3f60;" text="REGISTRO" onAction="#handleRegistro" textFill="WHITE" VBox.vgrow="ALWAYS">
+                    <font>
+                        <Font name="Old Antic Outline" size="25.0" />
+                    </font>
+                    <VBox.margin>
+                        <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                    </VBox.margin>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </Button>
+                <Button fx:id="btnCerrarSesion" mnemonicParsing="false" prefHeight="71.0" prefWidth="300.0" style="-fx-background-color: #1c3f60;" text="CERRAR SESION" onAction="#handleCerrarSesion" textFill="WHITE" VBox.vgrow="ALWAYS">
+                    <font>
+                        <Font name="Old Antic Outline" size="25.0" />
+                    </font>
+                    <VBox.margin>
+                        <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                    </VBox.margin>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </Button>
             </children>
         </VBox>
-    </left>
-
-    <!-- Centro -->
-    <center>
-        <AnchorPane style="-fx-background-color: #2a5277;">
+        <AnchorPane prefHeight="800.0" prefWidth="980.0" style="-fx-background-color: #2a5277;" HBox.hgrow="ALWAYS">
             <children>
-                <!-- Título adaptativo -->
-                <Label text="PRODUCCION POR CORTE" textFill="WHITE"
-                       AnchorPane.topAnchor="30.0" AnchorPane.leftAnchor="250.0">
-                    <font>
-                        <Font name="System Bold Italic" size="60.0" />
-                    </font>
-                </Label>
-
-                <!-- Panel grande izquierdo -->
-                <Pane style="-fx-background-color: #ffffff;"
-                      AnchorPane.topAnchor="150.0"
-                      AnchorPane.leftAnchor="30.0"
-                      AnchorPane.bottomAnchor="30.0"
-                      AnchorPane.rightAnchor="350.0"/>
-
-                <!-- Panel superior derecho -->
-                <Pane style="-fx-background-color: #ffffff;"
-                      AnchorPane.topAnchor="150.0"
-                      AnchorPane.rightAnchor="30.0"
-                      prefHeight="390.0"
-                      prefWidth="268.0"/>
-
-                <!-- Panel inferior derecho -->
-                <Pane style="-fx-background-color: #ffffff;"
-                      AnchorPane.bottomAnchor="30.0"
-                      AnchorPane.rightAnchor="30.0"
-                      prefHeight="390.0"
-                      prefWidth="268.0"/>
+                <ImageView fitHeight="202.0" fitWidth="195.0" layoutX="-219.0" layoutY="-27.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../Imagenes/IMG_1152.png" />
+                    </image>
+                </ImageView>
+            <AnchorPane fx:id="contentPane" layoutX="1.0" prefHeight="800.0" prefWidth="1030.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
             </children>
         </AnchorPane>
-    </center>
-
-</BorderPane>
+    </children>
+</HBox>

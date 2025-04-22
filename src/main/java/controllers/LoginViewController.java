@@ -30,9 +30,8 @@ public class LoginViewController
     {
 
     }
-
     @FXML
-    private void ClickBoton(javafx.event.ActionEvent event) {
+    private void BtnIngresar(javafx.event.ActionEvent event) {
         String usuario = TxtUsuario.getText();
         String contraseña = TxtContraseña.getText();
 
@@ -53,7 +52,7 @@ public class LoginViewController
                 mostrarAlerta("Acceso Correcto", "Ingresando como cliente");
                 Stage stage = (Stage) BtnIngresar.getScene().getWindow();
                 try {
-                    AbrirViewCliente((Stage) ((Node) event.getSource()).getScene().getWindow());
+                    AbrirViewMaq((Stage) ((Node) event.getSource()).getScene().getWindow());
                 } catch (Exception e) {}
             }
             else{
@@ -88,8 +87,8 @@ public class LoginViewController
         loginStage.close();
     }
 
-    public void AbrirViewCliente(Stage window) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(Paths.MainViewClient));
+    public void AbrirViewMaq(Stage window) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(Paths.MainMaqView));
         Parent root = loader.load();
 
         Stage stage = new Stage();
