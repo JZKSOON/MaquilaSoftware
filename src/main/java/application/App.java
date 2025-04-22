@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import utils.Paths;
 
 public class App extends Application {
 
@@ -16,7 +17,7 @@ public class App extends Application {
     public void start(Stage stage) throws Exception {
 
         //Iniciar con Ventana de Login
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/Interfaz/LoginView.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(Paths.LoginView));
         Parent root = loader.load();
 
         Scene scene = new Scene(root);
