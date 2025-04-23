@@ -1,6 +1,7 @@
 package application;
 
 import javafx.application.Application;
+import database.ConexionDB;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -16,7 +17,8 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
-        //Iniciar con Ventana de Login
+        //Iniciar con Ventana de Login y base de datos
+        database.ConexionDB.inicializar();
         FXMLLoader loader = new FXMLLoader(getClass().getResource(Paths.LoginView));
         Parent root = loader.load();
 
@@ -26,4 +28,5 @@ public class App extends Application {
         stage.setTitle("Admin");
         stage.show();
     }
+
 }

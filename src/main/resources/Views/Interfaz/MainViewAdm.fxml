@@ -7,15 +7,24 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.interfaz.MainViewAdmController">
     <children>
-        <VBox prefHeight="800.0" prefWidth="240.0" style="-fx-background-color: #2e658a;">
+        <VBox alignment="CENTER" fillWidth="false" prefHeight="800.0" prefWidth="240.0" style="-fx-background-color: #2e658a;">
             <children>
-                <ImageView fitHeight="145.0" fitWidth="244.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS" />
-                <Button fx:id="btnInicio" mnemonicParsing="false" prefHeight="85.0" prefWidth="300.0" style="-fx-background-color: #1c3f60;" text="INICIO" onAction="#handleInicio" textFill="WHITE" VBox.vgrow="ALWAYS">
+            <Pane VBox.vgrow="ALWAYS">
+               <children>
+                      <ImageView fitHeight="202.0" fitWidth="195.0" layoutY="-21.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                              <Image url="@../../Imagenes/IMG_1152.png" />
+                          </image>
+                      </ImageView>
+               </children>
+            </Pane>
+                <Button fx:id="btnInicio" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleInicio" prefHeight="85.0" prefWidth="240.0" style="-fx-background-color: #1c3f60;" text="INICIO" textAlignment="JUSTIFY" textFill="WHITE" VBox.vgrow="ALWAYS">
                     <font>
                         <Font name="Old Antic Outline" size="25.0" />
                     </font>
@@ -26,7 +35,7 @@
                         <Cursor fx:constant="HAND" />
                     </cursor>
                 </Button>
-                <Button fx:id="btnCliente" mnemonicParsing="false" prefHeight="85.0" prefWidth="300.0" style="-fx-background-color: #1c3f60;" text="CLIENTE" onAction="#handleCliente" textFill="WHITE" VBox.vgrow="ALWAYS">
+                <Button fx:id="btnCliente" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleCliente" prefHeight="85.0" prefWidth="240.0" style="-fx-background-color: #1c3f60;" text="CLIENTE" textAlignment="JUSTIFY" textFill="WHITE" VBox.vgrow="ALWAYS">
                     <font>
                         <Font name="Old Antic Outline" size="25.0" />
                     </font>
@@ -37,7 +46,7 @@
                         <Cursor fx:constant="HAND" />
                     </cursor>
                 </Button>
-                <Button fx:id="btnMaquilas" mnemonicParsing="false" prefHeight="85.0" prefWidth="300.0" style="-fx-background-color: #1c3f60;" text="MAQUILAS" onAction="#handleMaquilas" textFill="WHITE" VBox.vgrow="ALWAYS">
+                <Button fx:id="btnMaquilas" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleMaquilas" prefHeight="85.0" prefWidth="240.0" style="-fx-background-color: #1c3f60;" text="MAQUILAS" textAlignment="JUSTIFY" textFill="WHITE" VBox.vgrow="ALWAYS">
                     <font>
                         <Font name="Old Antic Outline" size="25.0" />
                     </font>
@@ -48,7 +57,7 @@
                         <Cursor fx:constant="HAND" />
                     </cursor>
                 </Button>
-                <Button fx:id="btnConfeccion" mnemonicParsing="false" prefHeight="85.0" prefWidth="300.0" style="-fx-background-color: #1c3f60;" text="CONFECCION" onAction="#handleConfeccion" textFill="WHITE" VBox.vgrow="ALWAYS">
+                <Button fx:id="btnConfeccion" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleConfeccion" prefHeight="85.0" prefWidth="240.0" style="-fx-background-color: #1c3f60;" text="CONFECCION" textAlignment="JUSTIFY" textFill="WHITE" VBox.vgrow="ALWAYS">
                     <font>
                         <Font name="Old Antic Outline" size="25.0" />
                     </font>
@@ -59,7 +68,7 @@
                         <Cursor fx:constant="HAND" />
                     </cursor>
                 </Button>
-                <Button fx:id="btnLavanderia" mnemonicParsing="false" prefHeight="85.0" prefWidth="300.0" style="-fx-background-color: #1c3f60;" text="LAVANDERIA" onAction="#handleLavanderia" textFill="WHITE" VBox.vgrow="ALWAYS">
+                <Button fx:id="btnLavanderia" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleLavanderia" prefHeight="85.0" prefWidth="240.0" style="-fx-background-color: #1c3f60;" text="LAVANDERIA" textAlignment="JUSTIFY" textFill="WHITE" VBox.vgrow="ALWAYS">
                     <font>
                         <Font name="Old Antic Outline" size="25.0" />
                     </font>
@@ -70,7 +79,7 @@
                         <Cursor fx:constant="HAND" />
                     </cursor>
                 </Button>
-                <Button fx:id="btnEmpaque" mnemonicParsing="false" prefHeight="85.0" prefWidth="300.0" style="-fx-background-color: #1c3f60;" text="EMPAQUE" onAction="#handleEmpaque" textFill="WHITE" VBox.vgrow="ALWAYS">
+                <Button fx:id="btnEmpaque" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleEmpaque" prefHeight="85.0" prefWidth="240.0" style="-fx-background-color: #1c3f60;" text="EMPAQUE" textAlignment="JUSTIFY" textFill="WHITE" VBox.vgrow="ALWAYS">
                     <font>
                         <Font name="Old Antic Outline" size="25.0" />
                     </font>
@@ -81,7 +90,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
                 </Button>
-                <Button fx:id="btnRegistro" mnemonicParsing="false" prefHeight="85.0" prefWidth="300.0" style="-fx-background-color: #1c3f60;" text="REGISTRO" onAction="#handleRegistro" textFill="WHITE" VBox.vgrow="ALWAYS">
+                <Button fx:id="btnRegistro" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleRegistro" prefHeight="85.0" prefWidth="240.0" style="-fx-background-color: #1c3f60;" text="REGISTRO" textAlignment="JUSTIFY" textFill="WHITE" VBox.vgrow="ALWAYS">
                     <font>
                         <Font name="Old Antic Outline" size="25.0" />
                     </font>
@@ -92,7 +101,7 @@
                         <Cursor fx:constant="HAND" />
                     </cursor>
                 </Button>
-                <Button fx:id="btnCerrarSesion" mnemonicParsing="false" prefHeight="71.0" prefWidth="300.0" style="-fx-background-color: #1c3f60;" text="CERRAR SESION" onAction="#handleCerrarSesion" textFill="WHITE" VBox.vgrow="ALWAYS">
+                <Button fx:id="btnCerrarSesion" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleCerrarSesion" prefHeight="71.0" prefWidth="240.0" style="-fx-background-color: #1c3f60;" text="CERRAR SESION" textAlignment="JUSTIFY" textFill="WHITE" VBox.vgrow="ALWAYS">
                     <font>
                         <Font name="Old Antic Outline" size="25.0" />
                     </font>
@@ -105,15 +114,9 @@
                 </Button>
             </children>
         </VBox>
-        <AnchorPane prefHeight="800.0" prefWidth="980.0" style="-fx-background-color: #2a5277;" HBox.hgrow="ALWAYS">
-            <children>
-                <ImageView fitHeight="202.0" fitWidth="195.0" layoutX="-219.0" layoutY="-27.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@../../Imagenes/IMG_1152.png" />
-                    </image>
-                </ImageView>
-            <AnchorPane fx:id="contentPane" layoutX="1.0" prefHeight="800.0" prefWidth="1030.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-            </children>
-        </AnchorPane>
+        <AnchorPane prefHeight="380.0" prefWidth="677.0" style="-fx-background-color: #2a5277;" HBox.hgrow="ALWAYS">
+         <children>
+            <AnchorPane fx:id="contentPane" layoutX="33.0" layoutY="33.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+         </children></AnchorPane>
     </children>
 </HBox>

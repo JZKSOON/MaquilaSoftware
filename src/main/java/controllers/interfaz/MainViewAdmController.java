@@ -2,12 +2,15 @@ package controllers.interfaz;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class MainViewAdmController {
+public class MainViewAdmController implements Initializable {
 
     @FXML
     private AnchorPane contentPane;
@@ -23,42 +26,48 @@ public class MainViewAdmController {
 
     @FXML
     public void handleInicio(javafx.event.ActionEvent actionEvent) {
-        loadView("/views/InicioView.fxml");
+        loadView("/Views/ViewsAdm/InicioView.fxml");
+    }
+
+    //Carga Los graficos del boton Inicio desde que se abre la view
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        // Simula el clic del botón al iniciar
+        handleInicio(new javafx.event.ActionEvent());
     }
 
     @FXML
     public void handleCliente(javafx.event.ActionEvent actionEvent) {
-        loadView("/views/ClienteView.fxml");
+        loadView("/Views/ViewsAdm/ClienteView.fxml");
     }
 
     @FXML
     public void handleMaquilas(javafx.event.ActionEvent actionEvent) {
-        loadView("/views/MaquilasView.fxml");
+        loadView("/Views/ViewsAdm/MaquilasView.fxml");
     }
 
     @FXML
     public void handleConfeccion(javafx.event.ActionEvent actionEvent) {
-        loadView("/views/ConfeccionView.fxml");
+        loadView("/Views/ViewsAdm/ConfeccionView.fxml");
     }
 
     @FXML
     public void handleLavanderia(javafx.event.ActionEvent actionEvent) {
-        loadView("/views/LavanderiaView.fxml");
+        loadView("/Views/ViewsAdm/LavanderiaView.fxml");
     }
 
     @FXML
     public void handleEmpaque(javafx.event.ActionEvent actionEvent) {
-        loadView("/views/EmpaqueView.fxml");
+        loadView("/Views/ViewsAdm/EmpaqueView.fxml");
     }
 
     @FXML
     public void handleRegistro(javafx.event.ActionEvent actionEvent) {
-        loadView("/views/RegistroView.fxml");
+        loadView("/Views/ViewsAdm/RegistroView.fxml");
     }
 
     @FXML
     public void handleCerrarSesion(javafx.event.ActionEvent actionEvent) {
 
     }
-
 }
