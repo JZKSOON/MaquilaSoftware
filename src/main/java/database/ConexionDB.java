@@ -13,21 +13,45 @@ public class ConexionDB {
     }
 
     public static void inicializar() {
-        try (Connection conn = conectar(); Statement stmt = conn.createStatement()) {
-            String sql = "CREATE TABLE IF NOT EXISTS clientes (" +
-                    "id INTEGER PRIMARY KEY," +
-                    "razonSocial TEXT," +
-                    "nombre TEXT," +
-                    "celular TEXT," +
-                    "direccion TEXT," +
-                    "estado TEXT," +
-                    "municipio TEXT," +
-                    "cp TEXT," +
-                    "email TEXT," +
-                    "telefono TEXT" +
-                    ")";
-            stmt.execute(sql);
+        try (Connection conn = conectar();
+             Statement stmt = conn.createStatement()) {
+
+            // 1) Tabla de clientes
+            String sqlClientes = """
+                CREATE TABLE IF NOT EXISTS clientes (
+                    id INTEGER PRIMARY KEY,
+                    razonSocial TEXT,
+                    nombre TEXT,
+                    celular TEXT,
+                    direccion TEXT,
+                    estado TEXT,
+                    municipio TEXT,
+                    cp TEXT,
+                    email TEXT,
+                    telefono TEXT
+                )
+                """;
+            stmt.execute(sqlClientes);
             System.out.println("Tabla 'clientes' verificada o creada.");
+
+            // 2) Tabla de maquilas
+            String sqlMaquilas = """
+                CREATE TABLE IF NOT EXISTS maquilas (
+                    idM INTEGER PRIMARY KEY,
+                    NombreMaquila TEXT,
+                    nombreM TEXT,
+                    celularM TEXT,
+                    direccionM TEXT,
+                    estadoM TEXT,
+                    municipioM TEXT,
+                    cpM TEXT,
+                    email TEXT,
+                    telefono TEXT
+                )
+                """;
+            stmt.execute(sqlMaquilas);
+            System.out.println("Tabla 'maquilas' verificada o creada.");
+
         } catch (SQLException e) {
             System.err.println("Error al inicializar la base de datos:");
             e.printStackTrace();

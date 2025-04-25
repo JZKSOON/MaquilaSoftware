@@ -1,89 +1,128 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.Line?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox xmlns="http://javafx.com/javafx/23.0.1"
-      xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="controllers.ViewsAdm.ClienteViewController"
-      prefHeight="800.0" prefWidth="1040.0"
-      style="-fx-background-color: #1c3f60;"
-      maxHeight="-Infinity" maxWidth="-Infinity"
-      minHeight="-Infinity" minWidth="-Infinity">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1300.0" style="-fx-background-color: #2a5277;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ViewsAdm.ClienteViewController">
 
    <children>
       <!-- PANEL IZQUIERDO: FORMULARIO -->
-      <VBox prefHeight="740.0" prefWidth="238.0" spacing="8.0"
-            style="-fx-background-color: #1c3f60;" HBox.hgrow="ALWAYS">
+      <VBox fillWidth="false" prefHeight="740.0" prefWidth="238.0" spacing="8.0" style="-fx-background-color: #2a5277;">
          <children>
             <Label text="Registro Clientes" textFill="WHITE">
                <font>
-                  <Font name="Franklin Gothic Heavy" size="28.0"/>
+                  <Font name="Franklin Gothic Heavy" size="28.0" />
                </font>
             </Label>
-            <Line startX="0" startY="0" endX="200" endY="0"/>
 
-            <Label text="ID" textFill="WHITE"/>
-            <TextField fx:id="idField" promptText="1, 2, etc..." prefHeight="26.0" prefWidth="57.0"/>
+            <Label text="ID" textFill="WHITE">
+               <font>
+                  <Font name="Dubai Medium" size="15.0" />
+               </font></Label>
+            <TextField fx:id="idField" prefHeight="25.0" prefWidth="179.0" promptText="1, 2, etc..." />
 
-            <Label text="Razón Social" textFill="WHITE"/>
-            <TextField fx:id="razonSocialField" promptText="Peluche SA de CV"/>
+            <Label text="Razón Social" textFill="WHITE">
+               <font>
+                  <Font name="Dubai Medium" size="15.0" />
+               </font></Label>
+            <TextField fx:id="razonSocialField" promptText="Peluche SA de CV" />
 
-            <Label text="Nombre" textFill="WHITE"/>
-            <TextField fx:id="nombreField" promptText="Juan Pérez"/>
+            <Label text="Nombre" textFill="WHITE">
+               <font>
+                  <Font name="Dubai Medium" size="15.0" />
+               </font></Label>
+            <TextField fx:id="nombreField" promptText="Juan Pérez" />
 
-            <Label text="Celular" textFill="WHITE"/>
-            <TextField fx:id="celularField" promptText="2382342462"/>
+            <Label text="Celular" textFill="WHITE">
+               <font>
+                  <Font name="Dubai Medium" size="15.0" />
+               </font></Label>
+            <TextField fx:id="celularField" promptText="2382342462" />
 
-            <Label text="Dirección" textFill="WHITE"/>
-            <TextArea fx:id="direccionArea" prefHeight="80.0" promptText="Calle, Número, Colonia"/>
+            <Label text="Dirección" textFill="WHITE">
+               <font>
+                  <Font name="Dubai Medium" size="15.0" />
+               </font></Label>
+            <TextArea fx:id="direccionArea" prefHeight="76.0" prefWidth="229.0" promptText="Calle, Número, Colonia" />
 
-            <Label text="Estado" textFill="WHITE"/>
-            <ComboBox fx:id="estadoComboBox"/>
+            <Label text="Estado" textFill="WHITE">
+               <font>
+                  <Font name="Dubai Medium" size="15.0" />
+               </font></Label>
+            <ComboBox fx:id="estadoComboBox" />
 
-            <Label text="Municipio" textFill="WHITE"/>
-            <TextField fx:id="municipioField"/>
+            <Label text="Municipio" textFill="WHITE">
+               <font>
+                  <Font name="Dubai Medium" size="15.0" />
+               </font></Label>
+            <TextField fx:id="municipioField" />
 
-            <Label text="CP" textFill="WHITE"/>
-            <TextField fx:id="cpField"/>
+            <Label text="CP" textFill="WHITE">
+               <font>
+                  <Font name="Dubai Medium" size="15.0" />
+               </font></Label>
+            <TextField fx:id="cpField" />
 
-            <Label text="E-MAIL" textFill="WHITE"/>
-            <TextField fx:id="emailField"/>
+            <Label text="E-MAIL" textFill="WHITE">
+               <font>
+                  <Font name="Dubai Medium" size="15.0" />
+               </font></Label>
+            <TextField fx:id="emailField" />
 
-            <Label text="Teléfono" textFill="WHITE"/>
-            <TextField fx:id="telefonoField"/>
-
-            <AnchorPane prefHeight="131.0" prefWidth="238.0">
-               <children>
-                  <Button fx:id="eliminarBtn" layoutX="24.0" layoutY="58.0" text="Eliminar" onAction="#eliminarCliente"/>
-                  <Button fx:id="modificarBtn" layoutX="142.0" layoutY="58.0" text="Modificar" onAction="#actualizarCliente"/>
-                  <Button fx:id="guardarBtn" layoutX="83.0" layoutY="14.0" text="Guardar" onAction="#guardarCliente"/>
-               </children>
-            </AnchorPane>
+            <Label text="Teléfono" textFill="WHITE">
+               <font>
+                  <Font name="Dubai Medium" size="15.0" />
+               </font></Label>
+            <TextField fx:id="telefonoField" />
+            <Button fx:id="guardarBtn" onAction="#guardarCliente" style="-fx-background-color: #22374c;" text="Guardar" textFill="WHITE" VBox.vgrow="ALWAYS">
+               <font>
+                  <Font name="Dubai Medium" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="modificarBtn" onAction="#actualizarCliente" style="-fx-background-color: #22374c;" text="Modificar" textFill="WHITE" VBox.vgrow="ALWAYS">
+               <font>
+                  <Font name="Dubai Medium" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="eliminarBtn" onAction="#eliminarCliente" style="-fx-background-color: #22374c;" text="Eliminar" textFill="WHITE" VBox.vgrow="ALWAYS">
+               <font>
+                  <Font name="Dubai Medium" size="16.0" />
+               </font>
+            </Button>
          </children>
          <VBox.margin>
-            <Insets left="5.0"/>
+            <Insets left="5.0" />
          </VBox.margin>
+         <HBox.margin>
+            <Insets left="5.0" />
+         </HBox.margin>
       </VBox>
 
       <!-- PANEL DERECHO: TABLA DE CLIENTES -->
-      <AnchorPane style="-fx-background-color: #2e658a;" HBox.hgrow="ALWAYS">
+      <AnchorPane prefHeight="800.0" prefWidth="990.0" style="-fx-background-color: #2e658a;" HBox.hgrow="ALWAYS">
          <children>
-            <TableView fx:id="clienteTable" layoutX="10.0" layoutY="20.0" prefHeight="760.0" prefWidth="780.0">
+            <TableView fx:id="clienteTable" layoutX="10.0" layoutY="20.0" prefHeight="760.0" prefWidth="980.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <columns>
-                  <TableColumn fx:id="idColumn" prefWidth="75.0" text="ID"/>
-                  <TableColumn fx:id="razonSocialColumn" prefWidth="120.0" text="Razón Social"/>
-                  <TableColumn fx:id="nombreColumn" prefWidth="100.0" text="Nombre"/>
-                  <TableColumn fx:id="celularColumn" prefWidth="100.0" text="Celular"/>
-                  <TableColumn fx:id="direccionColumn" prefWidth="150.0" text="Dirección"/>
-                  <TableColumn fx:id="estadoColumn" prefWidth="100.0" text="Estado"/>
-                  <TableColumn fx:id="municipioColumn" prefWidth="100.0" text="Municipio"/>
-                  <TableColumn fx:id="cpColumn" prefWidth="75.0" text="CP"/>
-                  <TableColumn fx:id="emailColumn" prefWidth="150.0" text="Email"/>
-                  <TableColumn fx:id="telefonoColumn" prefWidth="100.0" text="Teléfono"/>
+                  <TableColumn fx:id="idColumn" prefWidth="75.0" text="ID" />
+                  <TableColumn fx:id="razonSocialColumn" prefWidth="120.0" text="Razón Social" />
+                  <TableColumn fx:id="nombreColumn" prefWidth="100.0" text="Nombre" />
+                  <TableColumn fx:id="celularColumn" prefWidth="100.0" text="Celular" />
+                  <TableColumn fx:id="direccionColumn" prefWidth="150.0" text="Dirección" />
+                  <TableColumn fx:id="estadoColumn" prefWidth="100.0" text="Estado" />
+                  <TableColumn fx:id="municipioColumn" prefWidth="100.0" text="Municipio" />
+                  <TableColumn fx:id="cpColumn" prefWidth="75.0" text="CP" />
+                  <TableColumn fx:id="emailColumn" prefWidth="150.0" text="Email" />
+                  <TableColumn fx:id="telefonoColumn" prefWidth="100.0" text="Teléfono" />
                </columns>
             </TableView>
          </children>

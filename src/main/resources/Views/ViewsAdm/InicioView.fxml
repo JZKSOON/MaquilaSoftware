@@ -5,16 +5,14 @@
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="controllers.ViewsAdm.InicioViewController">
+<AnchorPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ViewsAdm.InicioViewController">
     <children>
-        <BarChart fx:id="barChartAvance" layoutX="2.0" prefHeight="800.0" prefWidth="1030.0" title="Porcentaje de avance">
+        <BarChart fx:id="barChartAvance" layoutX="14.0" title="Porcentaje de avance" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <xAxis>
-                <CategoryAxis fx:id="xAxis" side="BOTTOM" label="Cortes"/>
+                <CategoryAxis label="Cortes" side="BOTTOM" fx:id="xAxis" />
             </xAxis>
             <yAxis>
-                <NumberAxis fx:id="yAxis" side="LEFT" label="Porcentaje"/>
+                <NumberAxis fx:id="yAxis" label="Porcentaje" side="LEFT" />
             </yAxis>
         </BarChart>
     </children>

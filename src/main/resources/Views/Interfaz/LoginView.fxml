@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.interfaz.LoginViewController">
+<HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.interfaz.LoginViewController">
    <children>
       <AnchorPane prefHeight="800.0" prefWidth="640.0" style="-fx-background-color: #2e658a;" HBox.hgrow="ALWAYS">
          <children>
@@ -37,7 +37,7 @@
                         <Font size="28.0" />
                      </font>
                   </PasswordField>
-                  <Button fx:id="BtnIngresar" onAction="#BtnIngresar" alignment="CENTER" mnemonicParsing="false" prefHeight="52.0" prefWidth="247.0" style="-fx-background-color: #22374c;" text="INGRESAR" textAlignment="CENTER" textFill="WHITE" VBox.vgrow="ALWAYS">
+                  <Button fx:id="BtnIngresar" alignment="CENTER" mnemonicParsing="false" onAction="#BtnIngresar" prefHeight="52.0" prefWidth="247.0" style="-fx-background-color: #22374c;" text="INGRESAR" textAlignment="CENTER" textFill="WHITE" VBox.vgrow="ALWAYS">
                      <font>
                         <Font name="Microsoft Sans Serif" size="25.0" />
                      </font>

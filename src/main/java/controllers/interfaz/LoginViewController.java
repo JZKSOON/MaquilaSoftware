@@ -35,7 +35,7 @@ public class LoginViewController
         String usuario = TxtUsuario.getText();
         String contraseña = TxtContraseña.getText();
 
-        if (usuario.equals("admin")&& contraseña.equals("1234")){
+        if (usuario.equals("1")&& contraseña.equals("1")){
             //AbrirMainView dependiendo si es administrador o usuario
             mostrarAlerta("Acceso Correcto", "Ingresando como administrador");
             Stage stage = (Stage) BtnIngresar.getScene().getWindow();
