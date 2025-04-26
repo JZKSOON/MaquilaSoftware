@@ -12,7 +12,7 @@ import java.sql.*;
 
 public class MaquilasViewController {
 
-    @FXML private TextField idFieldM, NombreMaquilaField, nombreMField, celularMField,
+    @FXML private TextField idMField, NombreMaquila, nombreMField, celularMField,
             municipioMField, cpMField, emailMField, telefonoMField;
     @FXML private TextArea direccionMArea;
     @FXML private ComboBox<String> estadoMComboBox;
@@ -92,13 +92,13 @@ public class MaquilasViewController {
 
     @FXML
     private void guardarMaquila() {
-        if (idFieldM.getText().isEmpty() || nombreMField.getText().isEmpty()) {
+        if (idMField.getText().isEmpty() || NombreMaquila.getText().isEmpty()) {
             mostrarAlerta("Campos obligatorios", "El campo ID y Nombre son obligatorios.");
             return;
         }
 
         try {
-            int id = Integer.parseInt(idFieldM.getText());
+            int id = Integer.parseInt(idMField.getText());
 
             if (idExiste(id)) {
                 mostrarAlerta("ID Existente", "Ya existe una maquila con ese ID.");
@@ -116,7 +116,7 @@ public class MaquilasViewController {
                  PreparedStatement stmt = conn.prepareStatement(sql)) {
 
                 stmt.setInt   (1, id);
-                stmt.setString(2, NombreMaquilaField.getText());
+                stmt.setString(2, NombreMaquila.getText());
                 stmt.setString(3, nombreMField.getText());
                 stmt.setString(4, celularMField.getText());
                 stmt.setString(5, direccionMArea.getText());
@@ -142,7 +142,7 @@ public class MaquilasViewController {
 
     @FXML
     private void actualizarMaquila() {
-        if (idFieldM.getText().isEmpty()) {
+        if (idMField.getText().isEmpty()) {
             mostrarAlerta("ID requerido", "Debe seleccionar una maquila para editar.");
             return;
         }
@@ -157,7 +157,7 @@ public class MaquilasViewController {
         try (Connection conn = ConexionDB.conectar();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setString(1, NombreMaquilaField.getText());
+            stmt.setString(1, NombreMaquila.getText());
             stmt.setString(2, nombreMField.getText());
             stmt.setString(3, celularMField.getText());
             stmt.setString(4, direccionMArea.getText());
@@ -166,7 +166,7 @@ public class MaquilasViewController {
             stmt.setString(7, cpMField.getText());
             stmt.setString(8, emailMField.getText());
             stmt.setString(9, telefonoMField.getText());
-            stmt.setInt   (10, Integer.parseInt(idFieldM.getText()));
+            stmt.setInt   (10, Integer.parseInt(idMField.getText()));
 
             stmt.executeUpdate();
             mostrarAlerta("Actualizado", "Maquila actualizada correctamente.");
@@ -203,8 +203,8 @@ public class MaquilasViewController {
     private void seleccionarMaquila() {
         Maquila m = maquilaTable.getSelectionModel().getSelectedItem();
         if (m != null) {
-            idFieldM.setText(String.valueOf(m.getIdM()));
-            NombreMaquilaField.setText(m.getNombreMaquila());
+            idMField.setText(String.valueOf(m.getIdM()));
+            NombreMaquila.setText(m.getNombreMaquila());
             nombreMField.setText(m.getNombreM());
             celularMField.setText(m.getCelularM());
             direccionMArea.setText(m.getDireccionM());
@@ -237,7 +237,7 @@ public class MaquilasViewController {
     }
 
     private void limpiarCampos() {
-        idFieldM.clear(); NombreMaquilaField.clear(); nombreMField.clear();
+        idMField.clear(); NombreMaquila.clear(); nombreMField.clear();
         celularMField.clear(); direccionMArea.clear();
         estadoMComboBox.getSelectionModel().clearSelection();
         municipioMField.clear(); cpMField.clear(); emailMField.clear(); telefonoMField.clear();

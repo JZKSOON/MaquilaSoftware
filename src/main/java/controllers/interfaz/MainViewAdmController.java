@@ -28,7 +28,7 @@ public class MainViewAdmController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
             Parent view = loader.load();
 
-            // Asegura que el contenido se expanda a todo el AnchorPane
+            //Hace que las views se configuren al anchor pane
             AnchorPane.setTopAnchor(view, 0.0);
             AnchorPane.setBottomAnchor(view, 0.0);
             AnchorPane.setLeftAnchor(view, 0.0);
