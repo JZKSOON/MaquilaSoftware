@@ -1,14 +1,123 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="controllers.ViewsAdm.CortesViewController"
-            prefHeight="400.0" prefWidth="600.0">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1300.0" style="-fx-background-color: #2a5277;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ViewsAdm.MaquilasViewController">
 
-</AnchorPane>
+    <children>
+        <VBox fillWidth="false" prefHeight="740.0" prefWidth="238.0" spacing="8.0" style="-fx-background-color: #2a5277;">
+            <children>
+                <Label text="Registro Cortes" textFill="WHITE">
+                    <font>
+                        <Font name="Franklin Gothic Heavy" size="27.0" />
+                    </font>
+                </Label>
+
+                <Label text="ID" textFill="WHITE">
+                    <font>
+                        <Font name="Dubai Medium" size="15.0" />
+                    </font></Label>
+                <TextField fx:id="idCortesField" prefHeight="25.0" prefWidth="179.0" promptText="1, 2, etc..." />
+
+                <Label text="Numero de Corte" textFill="WHITE">
+                    <font>
+                        <Font name="Dubai Medium" size="15.0" />
+                    </font></Label>
+                <TextField fx:id="NumCorteField" />
+
+                <Label text="Cantidad" textFill="WHITE">
+                    <font>
+                        <Font name="Dubai Medium" size="15.0" />
+                    </font></Label>
+                <TextField fx:id="CantidadField" />
+
+                <Label text="Marca" textFill="WHITE">
+                    <font>
+                        <Font name="Dubai Medium" size="15.0" />
+                    </font></Label>
+                <TextField fx:id="MarcaField" />
+
+                <Label text="Linea" textFill="WHITE">
+                    <font>
+                        <Font name="Dubai Medium" size="15.0" />
+                    </font></Label>
+            <TextField fx:id="LineaField" />
+
+                <Label text="Fecha llegada de tela" textFill="WHITE">
+                    <font>
+                        <Font name="Dubai Medium" size="15.0" />
+                    </font></Label>
+            <DatePicker fx:id="FechTela" />
+
+                <Label text="Llegada de tela" textFill="WHITE">
+                    <font>
+                        <Font name="Dubai Medium" size="15.0" />
+                    </font></Label>
+            <ComboBox fx:id="LlegTela" prefWidth="150.0" />
+
+                <Label text="Tipo de tela" textFill="WHITE">
+                    <font>
+                        <Font name="Dubai Medium" size="15.0" />
+                    </font></Label>
+                <TextField fx:id="TipoTelaField" />
+
+                <Label text="Fecha de liberacion de trazo" textFill="WHITE">
+                    <font>
+                        <Font name="Dubai Medium" size="15.0" />
+                    </font></Label>
+            <DatePicker fx:id="TrazoField" />
+                <Button fx:id="guardarBtn" onAction="#guardarCortes" style="-fx-background-color: #22374c;" text="Guardar" textFill="WHITE" VBox.vgrow="ALWAYS">
+                    <font>
+                        <Font name="Dubai Medium" size="16.0" />
+                    </font>
+                </Button>
+                <Button fx:id="modificarBtn" onAction="#actualizarCortes" style="-fx-background-color: #22374c;" text="Modificar" textFill="WHITE" VBox.vgrow="ALWAYS">
+                    <font>
+                        <Font name="Dubai Medium" size="16.0" />
+                    </font>
+                </Button>
+                <Button fx:id="eliminarBtn" onAction="#eliminarCortes" style="-fx-background-color: #22374c;" text="Eliminar" textFill="WHITE" VBox.vgrow="ALWAYS">
+                    <font>
+                        <Font name="Dubai Medium" size="16.0" />
+                    </font>
+                </Button>
+            </children>
+            <VBox.margin>
+                <Insets left="5.0" />
+            </VBox.margin>
+            <HBox.margin>
+                <Insets left="5.0" />
+            </HBox.margin>
+        </VBox>
+
+        <!-- PANEL DERECHO: TABLA DE CORTES -->
+        <AnchorPane prefHeight="800.0" prefWidth="990.0" style="-fx-background-color: #2e658a;" HBox.hgrow="ALWAYS">
+            <children>
+                <TableView fx:id="cortesTable" layoutX="10.0" layoutY="20.0" prefHeight="760.0" prefWidth="980.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <columns>
+                        <TableColumn fx:id="idCortesField" prefWidth="75.0" text="ID" />
+                        <TableColumn fx:id="NumCorteField" prefWidth="120.0" text="Numero de Corte" />
+                        <TableColumn fx:id="CantidadField" prefWidth="100.0" text="Cantidad" />
+                        <TableColumn fx:id="MarcaField" prefWidth="100.0" text="Marca" />
+                        <TableColumn fx:id="LineaField" prefWidth="150.0" text="Linea" />
+                        <TableColumn fx:id="FechTela" prefWidth="100.0" text="Fecha llegada de tela" />
+                        <TableColumn fx:id="LlegTela" prefWidth="100.0" text="Llegada de tela" />
+                        <TableColumn fx:id="TipoTelaField" prefWidth="75.0" text="Tipo de tela" />
+                        <TableColumn fx:id="TrazoField" prefWidth="150.0" text="Trazo" />
+                    </columns>
+                </TableView>
+            </children>
+        </AnchorPane>
+    </children>
+</HBox>

@@ -52,6 +52,23 @@ public class ConexionDB {
             stmt.execute(sqlMaquilas);
             System.out.println("Tabla 'maquilas' verificada o creada.");
 
+            // 2) Tabla de cortes
+            String sqlCortes = """
+                CREATE TABLE IF NOT EXISTS cortes (
+                    idCortes INTEGER PRIMARY KEY,
+                    NumCorte TEXT,
+                    Cantidad TEXT,
+                    Marca TEXT,
+                    Linea TEXT,
+                    FechTela TEXT,
+                    LlegTela TEXT,
+                    TipoTela TEXT,
+                    Trazo TEXT,
+                )
+                """;
+            stmt.execute(sqlCortes);
+            System.out.println("Tabla 'cortes' verificada o creada.");
+
         } catch (SQLException e) {
             System.err.println("Error al inicializar la base de datos:");
             e.printStackTrace();
