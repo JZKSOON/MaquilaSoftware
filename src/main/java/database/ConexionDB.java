@@ -16,7 +16,7 @@ public class ConexionDB {
         try (Connection conn = conectar();
              Statement stmt = conn.createStatement()) {
 
-            // 1) Tabla de clientes
+            // Tabla de clientes
             String sqlClientes = """
                 CREATE TABLE IF NOT EXISTS clientes (
                     id INTEGER PRIMARY KEY,
@@ -29,12 +29,11 @@ public class ConexionDB {
                     cp TEXT,
                     email TEXT,
                     telefono TEXT
-                )
-                """;
+                );
+            """;
             stmt.execute(sqlClientes);
-            System.out.println("Tabla 'clientes' verificada o creada.");
 
-            // 2) Tabla de maquilas
+            // Tabla de maquilas
             String sqlMaquilas = """
                 CREATE TABLE IF NOT EXISTS maquilas (
                     idM INTEGER PRIMARY KEY,
@@ -47,12 +46,11 @@ public class ConexionDB {
                     cpM TEXT,
                     email TEXT,
                     telefono TEXT
-                )
-                """;
+                );
+            """;
             stmt.execute(sqlMaquilas);
-            System.out.println("Tabla 'maquilas' verificada o creada.");
 
-            // 2) Tabla de cortes
+            // Tabla de cortes
             String sqlCortes = """
                 CREATE TABLE IF NOT EXISTS cortes (
                     idCortes INTEGER PRIMARY KEY,
@@ -60,17 +58,15 @@ public class ConexionDB {
                     Cantidad TEXT,
                     Marca TEXT,
                     Linea TEXT,
-                    FechTela TEXT,
-                    LlegTela TEXT,
                     TipoTela TEXT,
                     Trazo TEXT,
-                )
-                """;
+                    FechTela TEXT,
+                    LlegTela TEXT
+                );
+            """;
             stmt.execute(sqlCortes);
-            System.out.println("Tabla 'cortes' verificada o creada.");
 
         } catch (SQLException e) {
-            System.err.println("Error al inicializar la base de datos:");
             e.printStackTrace();
         }
     }

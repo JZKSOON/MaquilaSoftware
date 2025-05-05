@@ -1,3 +1,4 @@
+// controllers/ViewsAdm/CortesViewController.java
 package controllers.ViewsAdm;
 
 import database.ConexionDB;
@@ -8,212 +9,179 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.Cortes;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.time.LocalDate;
 
 public class CortesViewController {
 
-    @FXML private TextField idCortesField, NumCorteField, CantidadField, MarcaField,
-            LineaField, TipoTelaField, TrazoField ;
+    @FXML private TextField idCortesField, NumCorteField, CantidadField,
+            MarcaField, LineaField, TipoTelaField;
+    @FXML private DatePicker TrazoField;
     @FXML private DatePicker FechTela;
-    @FXML private ComboBox<String> LlegTelaComboBox;
+    @FXML private ComboBox<String> LlegTela;
     @FXML private TableView<Cortes> cortesTable;
 
-    // Columnas con los fx:id que pusiste en el FXML:
-    @FXML private TableColumn<Cortes, Integer> idCortes;
-    @FXML private TableColumn<Cortes, String>
-            NumCorteFieldColumn,
-            CantidadFieldColumn,
-            MarcaFieldColumn,
-            LineaFieldColumn,
-            TipoTelaFieldColumn,
-            TrazoFieldColumn,
-            FechTelaColumn,
-            LlegTelaColumn;
+    @FXML private TableColumn<Cortes, Integer> idCortesColumn;
+    @FXML private TableColumn<Cortes, String> NumCorteColumn, CantidadColumn,
+            MarcaColumn, LineaColumn, TipoTelaColumn, TrazoColumn, LlegTelaColumn;
+    @FXML private TableColumn<Cortes, LocalDate> FechTelaColumn;
 
-    private final ObservableList<Cortes> cortes = FXCollections.observableArrayList();
+    private final ObservableList<Cortes> cortesList = FXCollections.observableArrayList();
 
     @FXML
     public void initialize() {
         ConexionDB.inicializar();
-
-
-        LlegTelaComboBox.setItems(FXCollections.observableArrayList(
-                "OK, N/A"
-        ));
-
+        LlegTela.setItems(FXCollections.observableArrayList("OK", "N/A"));
         configurarColumnas();
         cargarDatos();
-        cortesTable.setOnMouseClicked(evt -> seleccionarCortes());
+        cortesTable.setOnMouseClicked(e -> seleccionarCorte());
     }
 
     private void configurarColumnas() {
-        // *** Aquí van los nombres de propiedad que coinciden con tus getters ***
-        idCortes          .setCellValueFactory(new PropertyValueFactory<>("idM"));
-        NumCorteFieldColumn.setCellValueFactory(new PropertyValueFactory<>("nombreMaquila"));
-        CantidadFieldColumn      .setCellValueFactory(new PropertyValueFactory<>("nombreM"));
-        MarcaFieldColumn     .setCellValueFactory(new PropertyValueFactory<>("celularM"));
-        LineaFieldColumn   .setCellValueFactory(new PropertyValueFactory<>("direccionM"));
-        TipoTelaFieldColumn      .setCellValueFactory(new PropertyValueFactory<>("estadoM"));
-        TrazoFieldColumn   .setCellValueFactory(new PropertyValueFactory<>("municipioM"));
-        FechTelaColumn          .setCellValueFactory(new PropertyValueFactory<>("cpM"));
-        LlegTelaColumn       .setCellValueFactory(new PropertyValueFactory<>("emailM"));
+        idCortesColumn .setCellValueFactory(new PropertyValueFactory<>("idCortes"));
+        NumCorteColumn .setCellValueFactory(new PropertyValueFactory<>("NumCorte"));
+        CantidadColumn .setCellValueFactory(new PropertyValueFactory<>("Cantidad"));
+        MarcaColumn    .setCellValueFactory(new PropertyValueFactory<>("Marca"));
+        LineaColumn    .setCellValueFactory(new PropertyValueFactory<>("Linea"));
+        TipoTelaColumn .setCellValueFactory(new PropertyValueFactory<>("TipoTela"));
+        TrazoColumn    .setCellValueFactory(new PropertyValueFactory<>("Trazo"));
+        FechTelaColumn .setCellValueFactory(new PropertyValueFactory<>("FechTela"));
+        LlegTelaColumn .setCellValueFactory(new PropertyValueFactory<>("LlegTela"));
     }
 
     private void cargarDatos() {
-        maquilas.clear();
+        cortesList.clear();
         try (Connection conn = ConexionDB.conectar();
              Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery("SELECT * FROM maquilas")) {
+             ResultSet rs = stmt.executeQuery("SELECT * FROM cortes")) {
 
             while (rs.next()) {
-                maquilas.add(new Maquila(
-                        rs.getInt("idM"),
-                        rs.getString("NombreMaquila"),
-                        rs.getString("nombreM"),
-                        rs.getString("celularM"),
-                        rs.getString("direccionM"),
-                        rs.getString("estadoM"),
-                        rs.getString("municipioM"),
-                        rs.getString("cpM"),
-                        rs.getString("email"),
-                        rs.getString("telefono")
+                cortesList.add(new Cortes(
+                        rs.getInt("idCortes"),
+                        rs.getString("NumCorte"),
+                        rs.getString("Cantidad"),
+                        rs.getString("Marca"),
+                        rs.getString("Linea"),
+                        rs.getString("TipoTela"),
+                        LocalDate.parse(rs.getString("Trazo")),
+                        LocalDate.parse(rs.getString("FechTela")),
+                        rs.getString("LlegTela")
                 ));
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
-        maquilaTable.setItems(maquilas);
+        cortesTable.setItems(cortesList);
     }
 
     @FXML
     private void guardarCortes() {
-        if (idMField.getText().isEmpty() || NombreMaquila.getText().isEmpty()) {
-            mostrarAlerta("Campos obligatorios", "El campo ID y Nombre son obligatorios.");
+        if (idCortesField.getText().isEmpty() || NumCorteField.getText().isEmpty()) {
+            mostrarAlerta("Campos obligatorios", "ID y Número de Corte son obligatorios.");
             return;
         }
-
         try {
-            int id = Integer.parseInt(idMField.getText());
-
-            if (idExiste(id)) {
-                mostrarAlerta("ID Existente", "Ya existe una maquila con ese ID.");
+            int id = Integer.parseInt(idCortesField.getText());
+            if (existeId(id)) {
+                mostrarAlerta("ID Existente", "Ya existe un corte con ese ID.");
                 return;
             }
-
-            String sql = """
-                INSERT INTO maquilas
-                  (idM, NombreMaquila, nombreM, celularM,
-                   direccionM, estadoM, municipioM, cpM, email, telefono)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-            """;
-
+            String sql = "INSERT INTO cortes (idCortes, NumCorte, Cantidad, Marca, Linea, TipoTela, Trazo, FechTela, LlegTela) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
             try (Connection conn = ConexionDB.conectar();
                  PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-                stmt.setInt   (1, id);
-                stmt.setString(2, NombreMaquila.getText());
-                stmt.setString(3, nombreMField.getText());
-                stmt.setString(4, celularMField.getText());
-                stmt.setString(5, direccionMArea.getText());
-                stmt.setString(6, estadoMComboBox.getValue());
-                stmt.setString(7, municipioMField.getText());
-                stmt.setString(8, cpMField.getText());
-                stmt.setString(9, emailMField.getText());
-                stmt.setString(10, telefonoMField.getText());
-
+                stmt.setInt(1, id);
+                stmt.setString(2, NumCorteField.getText());
+                stmt.setString(3, CantidadField.getText());
+                stmt.setString(4, MarcaField.getText());
+                stmt.setString(5, LineaField.getText());
+                stmt.setString(6, TipoTelaField.getText());
+                stmt.setString(7, TrazoField.getValue().toString());
+                stmt.setString(8, FechTela.getValue().toString());
+                stmt.setString(9, LlegTela.getValue());
                 stmt.executeUpdate();
-                mostrarAlerta("Éxito", "Maquila guardada correctamente.");
+                mostrarAlerta("Éxito", "Corte guardado correctamente.");
                 limpiarCampos();
                 cargarDatos();
             }
-
-        } catch (NumberFormatException ex) {
-            mostrarAlerta("Formato inválido", "El ID debe ser un número.");
+        } catch (NumberFormatException nf) {
+            mostrarAlerta("Formato inválido", "ID debe ser numérico.");
         } catch (SQLException ex) {
             ex.printStackTrace();
-            mostrarAlerta("Error", "No se pudo guardar la maquila.");
+            mostrarAlerta("Error BD", "No se pudo guardar el corte.");
         }
     }
 
     @FXML
     private void actualizarCortes() {
-        if (idMField.getText().isEmpty()) {
-            mostrarAlerta("ID requerido", "Debe seleccionar una maquila para editar.");
+        if (idCortesField.getText().isEmpty()) {
+            mostrarAlerta("ID requerido", "Selecciona un corte para editar.");
             return;
         }
-
-        String sql = """
-            UPDATE maquilas SET
-              NombreMaquila=?, nombreM=?, celularM=:?, direccionM=?,
-              estadoM=?, municipioM=?, cpM=?, email=?, telefono=?
-            WHERE idM=?
-        """.replace(":?", "?"); // workaround para literal ?
-
+        String sql = "UPDATE cortes SET NumCorte=?, Cantidad=?, Marca=?, Linea=?, TipoTela=?, Trazo=?, FechTela=?, LlegTela=? WHERE idCortes=?";
         try (Connection conn = ConexionDB.conectar();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-            stmt.setString(1, NombreMaquila.getText());
-            stmt.setString(2, nombreMField.getText());
-            stmt.setString(3, celularMField.getText());
-            stmt.setString(4, direccionMArea.getText());
-            stmt.setString(5, estadoMComboBox.getValue());
-            stmt.setString(6, municipioMField.getText());
-            stmt.setString(7, cpMField.getText());
-            stmt.setString(8, emailMField.getText());
-            stmt.setString(9, telefonoMField.getText());
-            stmt.setInt   (10, Integer.parseInt(idMField.getText()));
-
+            stmt.setString(1, NumCorteField.getText());
+            stmt.setString(2, CantidadField.getText());
+            stmt.setString(3, MarcaField.getText());
+            stmt.setString(4, LineaField.getText());
+            stmt.setString(5, TipoTelaField.getText());
+            stmt.setString(6, TrazoField.getValue().toString());
+            stmt.setString(7, FechTela.getValue().toString());
+            stmt.setString(8, LlegTela.getValue());
+            stmt.setInt(9, Integer.parseInt(idCortesField.getText()));
             stmt.executeUpdate();
-            mostrarAlerta("Actualizado", "Maquila actualizada correctamente.");
+            mostrarAlerta("Actualizado", "Corte actualizado correctamente.");
             limpiarCampos();
             cargarDatos();
         } catch (SQLException ex) {
             ex.printStackTrace();
-            mostrarAlerta("Error", "No se pudo actualizar la maquila.");
+            mostrarAlerta("Error BD", "No se pudo actualizar el corte.");
         }
     }
 
     @FXML
     private void eliminarCortes() {
-        Maquila sel = maquilaTable.getSelectionModel().getSelectedItem();
+        Cortes sel = cortesTable.getSelectionModel().getSelectedItem();
         if (sel == null) {
-            mostrarAlerta("Sin selección", "Por favor selecciona una maquila para eliminar.");
+            mostrarAlerta("Sin selección", "Selecciona un corte para eliminar.");
             return;
         }
-
-        String sql = "DELETE FROM maquilas WHERE idM = ?";
+        String sql = "DELETE FROM cortes WHERE idCortes=?";
         try (Connection conn = ConexionDB.conectar();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setInt(1, sel.getIdM());
+            stmt.setInt(1, sel.getIdCortes());
             stmt.executeUpdate();
-            mostrarAlerta("Eliminada", "Maquila eliminada correctamente.");
-            cargarDatos();
+            mostrarAlerta("Eliminado", "Corte eliminado correctamente.");
             limpiarCampos();
+            cargarDatos();
         } catch (SQLException ex) {
             ex.printStackTrace();
-            mostrarAlerta("Error", "No se pudo eliminar la maquila.");
+            mostrarAlerta("Error BD", "No se pudo eliminar el corte.");
         }
     }
 
-    private void seleccionarCortes() {
-        Maquila m = maquilaTable.getSelectionModel().getSelectedItem();
+    private void seleccionarCorte() {
+        Cortes m = cortesTable.getSelectionModel().getSelectedItem();
         if (m != null) {
-            idMField.setText(String.valueOf(m.getIdM()));
-            NombreMaquila.setText(m.getNombreMaquila());
-            nombreMField.setText(m.getNombreM());
-            celularMField.setText(m.getCelularM());
-            direccionMArea.setText(m.getDireccionM());
-            estadoMComboBox.setValue(m.getEstadoM());
-            municipioMField.setText(m.getMunicipioM());
-            cpMField.setText(m.getCpM());
-            emailMField.setText(m.getEmailM());
-            telefonoMField.setText(m.getTelefonoM());
+            idCortesField.setText(String.valueOf(m.getIdCortes()));
+            NumCorteField.setText(m.getNumCorte());
+            CantidadField.setText(m.getCantidad());
+            MarcaField.setText(m.getMarca());
+            LineaField.setText(m.getLinea());
+            TipoTelaField.setText(m.getTipoTela());
+            TrazoField.setValue(m.getTrazo());
+            FechTela.setValue(m.getFechTela());
+            LlegTela.setValue(m.getLlegTela());
         }
     }
 
-    private boolean idExiste(int id) {
+    private boolean existeId(int id) {
         try (Connection conn = ConexionDB.conectar();
-             PreparedStatement stmt = conn.prepareStatement("SELECT COUNT(*) FROM maquilas WHERE idM = ?")) {
+             PreparedStatement stmt = conn.prepareStatement("SELECT COUNT(*) FROM cortes WHERE idCortes=?")) {
             stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
             return rs.next() && rs.getInt(1) > 0;
@@ -224,17 +192,14 @@ public class CortesViewController {
     }
 
     private void mostrarAlerta(String t, String m) {
-        Alert a = new Alert(Alert.AlertType.INFORMATION);
-        a.setTitle(t);
-        a.setHeaderText(null);
-        a.setContentText(m);
-        a.showAndWait();
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(t); alert.setHeaderText(null); alert.setContentText(m);
+        alert.showAndWait();
     }
 
     private void limpiarCampos() {
-        idMField.clear(); NombreMaquila.clear(); nombreMField.clear();
-        celularMField.clear(); direccionMArea.clear();
-        estadoMComboBox.getSelectionModel().clearSelection();
-        municipioMField.clear(); cpMField.clear(); emailMField.clear(); telefonoMField.clear();
+        idCortesField.clear(); NumCorteField.clear(); CantidadField.clear();
+        MarcaField.clear(); LineaField.clear(); TipoTelaField.clear();
+        TrazoField.setValue(null); FechTela.setValue(null); LlegTela.getSelectionModel().clearSelection();
     }
 }
