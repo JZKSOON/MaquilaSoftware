@@ -16,7 +16,6 @@ public class ClienteViewController {
     @FXML private TextArea direccionArea;
     @FXML private ComboBox<String> estadoComboBox;
     @FXML private TableView<Cliente> clienteTable;
-
     @FXML private TableColumn<Cliente, Integer> idColumn;
     @FXML private TableColumn<Cliente, String> razonSocialColumn, nombreColumn, celularColumn, direccionColumn, estadoColumn, municipioColumn, cpColumn, emailColumn, telefonoColumn;
 
@@ -60,9 +59,16 @@ public class ClienteViewController {
              ResultSet rs = stmt.executeQuery("SELECT * FROM clientes")) {
             while (rs.next()) {
                 clientes.add(new Cliente(
-                        rs.getInt("id"), rs.getString("razonSocial"), rs.getString("nombre"),
-                        rs.getString("celular"), rs.getString("direccion"), rs.getString("estado"),
-                        rs.getString("municipio"), rs.getString("cp"), rs.getString("email"), rs.getString("telefono")
+                        rs.getInt("id"),
+                        rs.getString("razonSocial"),
+                        rs.getString("nombre"),
+                        rs.getString("celular"),
+                        rs.getString("direccion"),
+                        rs.getString("estado"),
+                        rs.getString("municipio"),
+                        rs.getString("cp"),
+                        rs.getString("email"),
+                        rs.getString("telefono")
                 ));
             }
         } catch (SQLException e) {
@@ -112,7 +118,7 @@ public class ClienteViewController {
             mostrarAlerta("Formato inválido", "El ID debe ser un número.");
         } catch (SQLException e) {
             e.printStackTrace();
-            mostrarAlerta("Error", "No se pudo guardar el cliente.");
+            mostrarAlerta("Error BD", "No se pudo guardar el cliente.");
         }
     }
 
@@ -125,8 +131,7 @@ public class ClienteViewController {
 
         try (Connection conn = ConexionDB.conectar();
              PreparedStatement stmt = conn.prepareStatement(
-                     "UPDATE clientes SET razonSocial=?, nombre=?, celular=?, direccion=?, estado=?, municipio=?, cp=?, email=?, telefono=? WHERE id=?")) {
-
+                     "UPDATE clientes SET razonSocial=?, nombre=?, celular=?, direccion=?, estado=?, municipio=?, cp=?, email=?, telefono=?, WHERE id=?")) {
             stmt.setString(1, razonSocialField.getText());
             stmt.setString(2, nombreField.getText());
             stmt.setString(3, celularField.getText());
@@ -161,8 +166,8 @@ public class ClienteViewController {
             stmt.setInt(1, clienteSeleccionado.getId());
             stmt.executeUpdate();
             mostrarAlerta("Eliminado", "Cliente eliminado correctamente.");
-            cargarDatos();
             limpiarCampos();
+            cargarDatos();
         } catch (SQLException e) {
             e.printStackTrace();
             mostrarAlerta("Error", "No se pudo eliminar el cliente.");

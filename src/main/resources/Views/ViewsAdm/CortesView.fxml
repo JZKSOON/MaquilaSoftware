@@ -6,58 +6,87 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox prefHeight="800.0" prefWidth="1300.0" style="-fx-background-color: #2a5277;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ViewsAdm.CortesViewController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1300.0" style="-fx-background-color: #2a5277;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ViewsAdm.CortesViewController">
 
     <children>
-        <!-- Panel izquierdo: formulario -->
-        <VBox prefWidth="250.0" spacing="8">
-            <padding>
-                <Insets bottom="10" left="10" right="10" top="10" />
-            </padding>
+        <!-- PANEL IZQUIERDO: FORMULARIO -->
+        <VBox fillWidth="false" prefHeight="740.0" prefWidth="238.0" spacing="8.0" style="-fx-background-color: #2a5277;">
             <children>
                 <Label text="Registro Cortes" textFill="WHITE">
-                    <font><Font name="Franklin Gothic Heavy" size="27.0" /></font>
+                    <font>
+                        <Font name="Franklin Gothic Heavy" size="28.0" />
+                    </font>
                 </Label>
 
-                <Label text="ID" textFill="WHITE" />
-                <TextField fx:id="idCortesField" promptText="1, 2, etc..." />
+                <Label text="ID" textFill="WHITE">
+                    <font>
+                        <Font name="Dubai Medium" size="15.0" />
+                    </font></Label>
+                <TextField fx:id="idCortesField" prefHeight="25.0" prefWidth="179.0" promptText="1, 2, etc..." />
 
-                <Label text="Número de Corte" textFill="WHITE" />
+                <Label text="Número de Corte" textFill="WHITE">
+                <font>
+                    <Font name="Dubai Medium" size="15.0" />
+                </font></Label>
                 <TextField fx:id="NumCorteField" />
 
-                <Label text="Cantidad Programada" textFill="WHITE" />
+                <Label text="Cantidad Programada" textFill="WHITE">
+                    <font>
+                        <Font name="Dubai Medium" size="15.0" />
+                    </font></Label>
                 <TextField fx:id="CantidadField" />
 
-                <Label text="Marca" textFill="WHITE" />
+                <Label text="Marca" textFill="WHITE">
+                    <font>
+                        <Font name="Dubai Medium" size="15.0" />
+                    </font></Label>
                 <TextField fx:id="MarcaField" />
 
-                <Label text="Línea" textFill="WHITE" />
+                <Label text="Línea" textFill="WHITE">
+                    <font>
+                        <Font name="Dubai Medium" size="15.0" />
+                    </font></Label>
                 <TextField fx:id="LineaField" promptText="Dama, Caballeros, Niños" />
 
-                <Label text="Tipo de Tela" textFill="WHITE" />
+                <Label text="Tipo de Tela" textFill="WHITE">
+                    <font>
+                        <Font name="Dubai Medium" size="15.0" />
+                    </font></Label>
                 <TextField fx:id="TipoTelaField" />
 
-                <HBox spacing="10">
-                    <children>
-                        <Button onAction="#guardarCortes" text="Guardar" />
-                        <Button onAction="#actualizarCortes" text="Actualizar" />
-                        <Button onAction="#eliminarCortes" text="Eliminar" />
-                    </children>
-                </HBox>
+                <Button fx:id="guardarBtn" onAction="#guardarCortes" style="-fx-background-color: #22374c;" text="Guardar" textFill="WHITE" VBox.vgrow="ALWAYS">
+                    <font>
+                        <Font name="Dubai Medium" size="16.0" />
+                    </font>
+                </Button>
+                <Button fx:id="modificarBtn" onAction="#actualizarCortes" style="-fx-background-color: #22374c;" text="Modificar" textFill="WHITE" VBox.vgrow="ALWAYS">
+                    <font>
+                        <Font name="Dubai Medium" size="16.0" />
+                    </font>
+                </Button>
+                <Button fx:id="eliminarBtn" onAction="#eliminarCortes" style="-fx-background-color: #22374c;" text="Eliminar" textFill="WHITE" VBox.vgrow="ALWAYS">
+                    <font>
+                        <Font name="Dubai Medium" size="16.0" />
+                    </font>
+                </Button>
             </children>
+            <VBox.margin>
+                <Insets left="5.0" />
+            </VBox.margin>
+            <HBox.margin>
+                <Insets left="5.0" />
+            </HBox.margin>
         </VBox>
 
         <!-- Panel derecho: tabla -->
-        <VBox spacing="8" HBox.hgrow="ALWAYS">
-            <padding>
-                <Insets bottom="10" left="10" right="10" top="10" />
-            </padding>
+        <AnchorPane prefHeight="800.0" prefWidth="990.0" style="-fx-background-color: #2e658a;" HBox.hgrow="ALWAYS">
             <children>
-                <TableView fx:id="cortesTable" prefWidth="1000.0">
+                <TableView fx:id="cortesTable" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
                         <TableColumn fx:id="idCortesColumn" prefWidth="80.0" text="ID" />
                         <TableColumn fx:id="NumCorteColumn" prefWidth="120.0" text="Número de Corte" />
@@ -65,12 +94,9 @@
                         <TableColumn fx:id="MarcaColumn" prefWidth="100.0" text="Marca" />
                         <TableColumn fx:id="LineaColumn" prefWidth="100.0" text="Línea" />
                         <TableColumn fx:id="TipoTelaColumn" prefWidth="100.0" text="Tipo Tela" />
-                        <TableColumn fx:id="TrazoColumn" prefWidth="100.0" text="Trazo" />
-                        <TableColumn fx:id="FechTelaColumn" prefWidth="100.0" text="Fecha Tela" />
-                        <TableColumn fx:id="LlegTelaColumn" prefWidth="100.0" text="Llegó Tela" />
                     </columns>
                 </TableView>
             </children>
-        </VBox>
+        </AnchorPane>
     </children>
 </HBox>

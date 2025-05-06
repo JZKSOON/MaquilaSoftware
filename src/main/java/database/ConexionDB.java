@@ -17,6 +17,7 @@ public class ConexionDB {
              Statement stmt = conn.createStatement()) {
 
             // Tabla de clientes
+
             String sqlClientes = """
                 CREATE TABLE IF NOT EXISTS clientes (
                     id INTEGER PRIMARY KEY,
@@ -34,6 +35,7 @@ public class ConexionDB {
             stmt.execute(sqlClientes);
 
             // Tabla de maquilas
+
             String sqlMaquilas = """
                 CREATE TABLE IF NOT EXISTS maquilas (
                     idM INTEGER PRIMARY KEY,
@@ -51,6 +53,7 @@ public class ConexionDB {
             stmt.execute(sqlMaquilas);
 
             // Tabla de cortes
+
             String sqlCortes = """
                 CREATE TABLE IF NOT EXISTS cortes (
                     idCortes INTEGER PRIMARY KEY,
@@ -58,13 +61,23 @@ public class ConexionDB {
                     Cantidad TEXT,
                     Marca TEXT,
                     Linea TEXT,
-                    TipoTela TEXT,
-                    Trazo TEXT,
-                    FechTela TEXT,
-                    LlegTela TEXT
+                    TipoTela TEXT
                 );
             """;
             stmt.execute(sqlCortes);
+            // Tabla de Mesa de corte
+
+            String sqlCorte = """
+                CREATE TABLE IF NOT EXISTS corte(
+                    idCorte INTEGER PRIMARY KEY,
+                    EntregaEncogimientos TEXT,
+                    Liberacion TEXT,
+                    Fecha TEXT,
+                    Precio TEXT,
+                    Cantidad TEXT
+                );
+            """;
+            stmt.execute(sqlCorte);
 
         } catch (SQLException e) {
             e.printStackTrace();

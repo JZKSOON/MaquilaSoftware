@@ -33,7 +33,7 @@
 
             <Label text="Razón Social" textFill="WHITE">
                <font>
-                  <Font name="Dubai Medium" size="15.0" />
+            <Font name="Dubai Medium" size="15.0" />
                </font></Label>
             <TextField fx:id="razonSocialField" promptText="Peluche SA de CV" />
 
@@ -84,6 +84,7 @@
                   <Font name="Dubai Medium" size="15.0" />
                </font></Label>
             <TextField fx:id="telefonoField" />
+
             <Button fx:id="guardarBtn" onAction="#guardarCliente" style="-fx-background-color: #22374c;" text="Guardar" textFill="WHITE" VBox.vgrow="ALWAYS">
                <font>
                   <Font name="Dubai Medium" size="16.0" />
