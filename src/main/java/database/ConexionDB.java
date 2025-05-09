@@ -40,6 +40,7 @@ public class ConexionDB {
                 CREATE TABLE IF NOT EXISTS maquilas (
                     idM INTEGER PRIMARY KEY,
                     NombreMaquila TEXT,
+                    AreaMaquila TEXT,
                     nombreM TEXT,
                     celularM TEXT,
                     direccionM TEXT,
@@ -65,6 +66,7 @@ public class ConexionDB {
                 );
             """;
             stmt.execute(sqlCortes);
+
             // Tabla de Mesa de corte
 
             String sqlCorte = """
@@ -78,6 +80,20 @@ public class ConexionDB {
                 );
             """;
             stmt.execute(sqlCorte);
+
+            //Tabla de Bordado
+
+            String sqlBordado = """
+            CREATE TABLE IF NOT EXISTS bordado(
+            idBordado INTEGER PRIMARY KEY,
+            MaquileroBordado TEXT,
+            FechaEntradaBordado TEXT,
+            FechaSalidaBordado TEXT,
+            CostoMaquilaBordado TEXT,
+            CantidadEntregada TEXT
+                );
+            """;
+            stmt.execute(sqlBordado);
 
         } catch (SQLException e) {
             e.printStackTrace();

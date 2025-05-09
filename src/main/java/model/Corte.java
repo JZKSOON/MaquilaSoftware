@@ -4,19 +4,19 @@ import java.time.LocalDate;
 
 public class Corte {
     private int idCorte;
-    private String EntregEncog;
-    private String LiberTrazo;
+    private String EntregaEncogimientos;
+    private String LiberacionTrazo;
     private String FechaCorte;
-    private String PrecioCorte;
+    private String PrecioDeCorte;
     private String CantidadCortada;
 
-    public Corte(int idCorte, String EntregEncog, String LiberTrazo,
-                 String FechaCorte, String PrecioCorte, String CantidadCortada) {
+    public Corte(int idCorte, String EntregaEncogimientos, String LiberacionTrazo,
+                 String FechaCorte, String PrecioDeCorte, String CantidadCortada) {
         this.idCorte = idCorte;
-        this.EntregEncog = EntregEncog;
-        this.LiberTrazo = LiberTrazo;
+        this.EntregaEncogimientos = EntregaEncogimientos;
+        this.LiberacionTrazo = LiberacionTrazo;
         this.FechaCorte = FechaCorte;
-        this.PrecioCorte = PrecioCorte;
+        this.PrecioDeCorte = PrecioDeCorte;
         this.CantidadCortada = CantidadCortada;
     }
 
@@ -25,22 +25,22 @@ public class Corte {
     public void setIdCorte(int idCorte) {
         this.idCorte = idCorte;
     }
-    public String getEntregEncog() {return EntregEncog;}
+    public String getEntregaEncogimientos() {return EntregaEncogimientos;}
 
-    public void setEntregEncog(String EntregEncog) {
-        this.EntregEncog = EntregEncog;
+    public void setEntregaEncogimientos(String EntregaEncogimientos) {
+        this.EntregaEncogimientos = EntregaEncogimientos;
     }
-    public String getLiberTrazo() {return LiberTrazo;}
-    public void setLiberTrazo(String LiberTrazo) {
-        this.LiberTrazo = LiberTrazo;
+    public String getLiberacionTrazo() {return LiberacionTrazo;}
+    public void setLiberacionTrazo(String LiberacionTrazo) {
+        this.LiberacionTrazo = LiberacionTrazo;
     }
     public String getFechaCorte() {return FechaCorte;}
     public void setFechaCorte(String FechaCorte) {
         this.FechaCorte = FechaCorte;
     }
-    public String getPrecioCorte() {return PrecioCorte;}
-    public void setPrecioCorte(String PrecioCorte) {
-        this.PrecioCorte = PrecioCorte;
+    public String getPrecioDeCorte() {return PrecioDeCorte;}
+    public void setPrecioDeCorte(String PrecioDeCorte) {
+        this.PrecioDeCorte = PrecioDeCorte;
     }
     public String getCantidadCortada() {return CantidadCortada;}
     public void setCantidadCortada(String CantidadCortada) {

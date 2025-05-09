@@ -17,7 +17,7 @@
 
     <children>
         <!-- PANEL IZQUIERDO: FORMULARIO -->
-        <VBox fillWidth="false" prefHeight="740.0" prefWidth="238.0" spacing="8.0" style="-fx-background-color: #2a5277;">
+        <VBox fillWidth="false" prefHeight="740.0" prefWidth="238.0" spacing="1.0" style="-fx-background-color: #2a5277;">
             <children>
                 <Label text="Registro Maquilas" textFill="WHITE">
                     <font>
@@ -37,6 +37,12 @@
                     </font></Label>
                 <TextField fx:id="NombreMaquila" promptText="Peluche SA de CV" />
 
+                <Label text="Area" textFill="WHITE">
+                    <font>
+                        <Font name="Dubai Medium" size="15.0" />
+                    </font></Label>
+            <ComboBox fx:id="AreaMaquilaComboBox" prefWidth="150.0" />
+
                 <Label text="Nombre" textFill="WHITE">
                     <font>
                         <Font name="Dubai Medium" size="15.0" />
@@ -53,13 +59,13 @@
                     <font>
                         <Font name="Dubai Medium" size="15.0" />
                     </font></Label>
-                <TextArea fx:id="direccionMArea" prefHeight="76.0" prefWidth="229.0" promptText="Calle, Número, Colonia" />
+                <TextArea fx:id="direccionMArea" prefHeight="24.0" prefWidth="230.0" promptText="Calle, Número, Colonia" />
 
                 <Label text="Estado" textFill="WHITE">
                     <font>
                         <Font name="Dubai Medium" size="15.0" />
                     </font></Label>
-                <ComboBox fx:id="estadoMComboBox" />
+                <ComboBox fx:id="estadoMComboBox" prefHeight="26.0" prefWidth="119.0" />
 
                 <Label text="Municipio" textFill="WHITE">
                     <font>
@@ -93,11 +99,17 @@
                     <font>
                         <Font name="Dubai Medium" size="16.0" />
                     </font>
+               <VBox.margin>
+                  <Insets top="2.0" />
+               </VBox.margin>
                 </Button>
                 <Button fx:id="eliminarBtn" onAction="#eliminarMaquila" style="-fx-background-color: #22374c;" text="Eliminar" textFill="WHITE" VBox.vgrow="ALWAYS">
                     <font>
                         <Font name="Dubai Medium" size="16.0" />
                     </font>
+               <VBox.margin>
+                  <Insets top="2.0" />
+               </VBox.margin>
                 </Button>
             </children>
             <VBox.margin>
@@ -115,6 +127,7 @@
                     <columns>
                         <TableColumn fx:id="idMColumn" prefWidth="75.0" text="ID" />
                         <TableColumn fx:id="NombreMaquilaColumn" prefWidth="120.0" text="Nombre Maquila" />
+                        <TableColumn fx:id="AreaMaquilaColumn" prefWidth="120.0" text="Area" />
                         <TableColumn fx:id="nombreMColumn" prefWidth="100.0" text="Nombre" />
                         <TableColumn fx:id="celularMColumn" prefWidth="100.0" text="Celular" />
                         <TableColumn fx:id="direccionMColumn" prefWidth="150.0" text="Dirección" />

@@ -32,10 +32,10 @@ public class CorteViewController {
     private void configurarColumnas() {
         idCorteColumn.setCellValueFactory(new PropertyValueFactory<>("idCorte"));
         EntregaEncogimientosColumn.setCellValueFactory(new PropertyValueFactory<>("EntregaEncogimientos"));
-        LiberacionTrazoColumn.setCellValueFactory(new PropertyValueFactory<>("Liberacion"));
-        FechaCorteColumn.setCellValueFactory(new PropertyValueFactory<>("Fecha"));
-        PrecioDeCorteColumn.setCellValueFactory(new PropertyValueFactory<>("Precio"));
-        CantidadCortadaColumn.setCellValueFactory(new PropertyValueFactory<>("Cantidad"));
+        LiberacionTrazoColumn.setCellValueFactory(new PropertyValueFactory<>("LiberacionTrazo"));
+        FechaCorteColumn.setCellValueFactory(new PropertyValueFactory<>("FechaCorte"));
+        PrecioDeCorteColumn.setCellValueFactory(new PropertyValueFactory<>("PrecioDeCorte"));
+        CantidadCortadaColumn.setCellValueFactory(new PropertyValueFactory<>("CantidadCortada"));
     }
 
     private void cargarDatos() {
@@ -157,10 +157,10 @@ public class CorteViewController {
         Corte m = corteTable.getSelectionModel().getSelectedItem();
         if (m != null) {
             idCorteField.setText(String.valueOf(m.getIdCorte()));
-            EntregaEncogimientosField.setText(m.getEntregEncog());
-            LiberacionTrazoField.setText(m.getLiberTrazo());
+            EntregaEncogimientosField.setText(m.getEntregaEncogimientos());
+            LiberacionTrazoField.setText(m.getLiberacionTrazo());
             FechaCorteField.setText(m.getFechaCorte());
-            PrecioDeCorteField.setText(m.getPrecioCorte());
+            PrecioDeCorteField.setText(m.getPrecioDeCorte());
             CantidadCortadaField.setText(m.getCantidadCortada());
         }
     }

@@ -3,6 +3,7 @@ package model;
 public class Maquila {
     private int idM;
     private String NombreMaquila;
+    private String AreaMaquila;
     private String nombreM;
     private String celularM;
     private String direccionM;
@@ -12,10 +13,11 @@ public class Maquila {
     private String email;
     private String telefono;
 
-    public Maquila(int id, String razonSocial, String nombre, String celular, String direccion,
+    public Maquila(int id, String razonSocial,String AreaMaquila, String nombre, String celular, String direccion,
                    String estado, String municipio, String cp, String email, String telefono) {
         this.idM = id;
         this.NombreMaquila = razonSocial;
+        this.AreaMaquila = AreaMaquila;
         this.nombreM = nombre;
         this.celularM = celular;
         this.direccionM = direccion;
@@ -33,6 +35,8 @@ public class Maquila {
     public String getNombreMaquila() {
         return NombreMaquila;
     }
+
+    public String getAreaMaquila() {return AreaMaquila;}
 
     public String getNombreM() {
         return nombreM;
@@ -77,6 +81,8 @@ public class Maquila {
     public void setNombreM(String nombreM) {
         this.nombreM = nombreM;
     }
+
+    public void setAreaMaquila(String areaMaquila) {this.AreaMaquila = areaMaquila;}
 
     public void setCelularM(String celularM) {
         this.celularM = celularM;

@@ -15,13 +15,14 @@ public class MaquilasViewController {
     @FXML private TextField idMField, NombreMaquila, nombreMField, celularMField,
             municipioMField, cpMField, emailMField, telefonoMField;
     @FXML private TextArea direccionMArea;
-    @FXML private ComboBox<String> estadoMComboBox;
+    @FXML private ComboBox<String> estadoMComboBox, AreaMaquilaComboBox;
     @FXML private TableView<Maquila> maquilaTable;
 
     // Columnas con los fx:id que pusiste en el FXML:
     @FXML private TableColumn<Maquila, Integer> idMColumn;
     @FXML private TableColumn<Maquila, String>
             NombreMaquilaColumn,
+            AreaMaquilaColumn,
             nombreMColumn,
             celularMColumn,
             direccionMColumn,
@@ -37,6 +38,9 @@ public class MaquilasViewController {
     public void initialize() {
         ConexionDB.inicializar();
 
+        AreaMaquilaComboBox.setItems(FXCollections.observableArrayList(
+                "Mesa de corte", "Bordado", "Confeccion", "Lavanderia", "Empaque"
+        ));
 
         estadoMComboBox.setItems(FXCollections.observableArrayList(
                 "Aguascalientes", "Baja California", "Baja California Sur", "Campeche", "Chiapas", "Chihuahua", "CDMX",
@@ -54,6 +58,7 @@ public class MaquilasViewController {
         // *** Aquí van los nombres de propiedad que coinciden con tus getters ***
         idMColumn          .setCellValueFactory(new PropertyValueFactory<>("idM"));
         NombreMaquilaColumn.setCellValueFactory(new PropertyValueFactory<>("nombreMaquila"));
+        AreaMaquilaColumn.setCellValueFactory(new PropertyValueFactory<>("areaMaquila"));
         nombreMColumn      .setCellValueFactory(new PropertyValueFactory<>("nombreM"));
         celularMColumn     .setCellValueFactory(new PropertyValueFactory<>("celularM"));
         direccionMColumn   .setCellValueFactory(new PropertyValueFactory<>("direccionM"));
@@ -74,6 +79,7 @@ public class MaquilasViewController {
                 maquilas.add(new Maquila(
                         rs.getInt("idM"),
                         rs.getString("NombreMaquila"),
+                        rs.getString("AreaMaquila"),
                         rs.getString("nombreM"),
                         rs.getString("celularM"),
                         rs.getString("direccionM"),
@@ -107,9 +113,9 @@ public class MaquilasViewController {
 
             String sql = """
                 INSERT INTO maquilas
-                  (idM, NombreMaquila, nombreM, celularM,
+                  (idM, NombreMaquila,AreaMaquila, nombreM, celularM,
                    direccionM, estadoM, municipioM, cpM, email, telefono)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """;
 
             try (Connection conn = ConexionDB.conectar();
@@ -117,14 +123,16 @@ public class MaquilasViewController {
 
                 stmt.setInt   (1, id);
                 stmt.setString(2, NombreMaquila.getText());
-                stmt.setString(3, nombreMField.getText());
-                stmt.setString(4, celularMField.getText());
-                stmt.setString(5, direccionMArea.getText());
-                stmt.setString(6, estadoMComboBox.getValue());
-                stmt.setString(7, municipioMField.getText());
-                stmt.setString(8, cpMField.getText());
-                stmt.setString(9, emailMField.getText());
-                stmt.setString(10, telefonoMField.getText());
+                stmt.setString(3, AreaMaquilaComboBox.getValue());
+                stmt.setString(4, nombreMField.getText());
+                stmt.setString(5, celularMField.getText());
+                stmt.setString(6, direccionMArea.getText());
+                stmt.setString(7, estadoMComboBox.getValue());
+                stmt.setString(8, municipioMField.getText());
+                stmt.setString(9, cpMField.getText());
+                stmt.setString(10, emailMField.getText());
+                stmt.setString(11, telefonoMField.getText());
+
 
                 stmt.executeUpdate();
                 mostrarAlerta("Éxito", "Maquila guardada correctamente.");
@@ -149,7 +157,7 @@ public class MaquilasViewController {
 
         String sql = """
             UPDATE maquilas SET
-              NombreMaquila=?, nombreM=?, celularM=:?, direccionM=?,
+              NombreMaquila=?, AreaMaquila=?, nombreM=?, celularM=:?, direccionM=?,
               estadoM=?, municipioM=?, cpM=?, email=?, telefono=?
             WHERE idM=?
         """.replace(":?", "?"); // workaround para literal ?
@@ -158,15 +166,17 @@ public class MaquilasViewController {
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, NombreMaquila.getText());
-            stmt.setString(2, nombreMField.getText());
-            stmt.setString(3, celularMField.getText());
-            stmt.setString(4, direccionMArea.getText());
-            stmt.setString(5, estadoMComboBox.getValue());
-            stmt.setString(6, municipioMField.getText());
-            stmt.setString(7, cpMField.getText());
-            stmt.setString(8, emailMField.getText());
-            stmt.setString(9, telefonoMField.getText());
-            stmt.setInt   (10, Integer.parseInt(idMField.getText()));
+            stmt.setString(2, AreaMaquilaComboBox.getValue());
+            stmt.setString(3, nombreMField.getText());
+            stmt.setString(4, celularMField.getText());
+            stmt.setString(5, direccionMArea.getText());
+            stmt.setString(6, estadoMComboBox.getValue());
+            stmt.setString(7, municipioMField.getText());
+            stmt.setString(8, cpMField.getText());
+            stmt.setString(9, emailMField.getText());
+            stmt.setString(10, telefonoMField.getText());
+            stmt.setInt(11, Integer.parseInt(idMField.getText())); // ID para el WHERE
+
 
             stmt.executeUpdate();
             mostrarAlerta("Actualizado", "Maquila actualizada correctamente.");
@@ -205,6 +215,7 @@ public class MaquilasViewController {
         if (m != null) {
             idMField.setText(String.valueOf(m.getIdM()));
             NombreMaquila.setText(m.getNombreMaquila());
+            AreaMaquilaComboBox.setValue(m.getAreaMaquila());
             nombreMField.setText(m.getNombreM());
             celularMField.setText(m.getCelularM());
             direccionMArea.setText(m.getDireccionM());
@@ -237,9 +248,16 @@ public class MaquilasViewController {
     }
 
     private void limpiarCampos() {
-        idMField.clear(); NombreMaquila.clear(); nombreMField.clear();
-        celularMField.clear(); direccionMArea.clear();
-        estadoMComboBox.getSelectionModel().clearSelection();
-        municipioMField.clear(); cpMField.clear(); emailMField.clear(); telefonoMField.clear();
+        idMField.clear();
+        NombreMaquila.clear();
+        AreaMaquilaComboBox.setValue(null);
+        nombreMField.clear();
+        celularMField.clear();
+        direccionMArea.clear();
+        estadoMComboBox.setValue(null);
+        municipioMField.clear();
+        cpMField.clear();
+        emailMField.clear();
+        telefonoMField.clear();
     }
 }
