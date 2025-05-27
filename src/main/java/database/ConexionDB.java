@@ -72,6 +72,7 @@ public class ConexionDB {
             String sqlCorte = """
                 CREATE TABLE IF NOT EXISTS corte(
                     idCorte INTEGER PRIMARY KEY,
+                    CorteMC TEXT,
                     EntregaEncogimientos TEXT,
                     Liberacion TEXT,
                     Fecha TEXT,
@@ -94,6 +95,44 @@ public class ConexionDB {
                 );
             """;
             stmt.execute(sqlBordado);
+
+            //Tabla de Confeccion
+
+            String sqlConfeccion = """
+            CREATE TABLE IF NOT EXISTS confeccion(
+            idConfeccion           INTEGER PRIMARY KEY,
+            MaquileroConfeccion    TEXT,
+            PrecioConfeccion       TEXT,
+            CantidadAsignada       TEXT,
+            FechaEntregaCorte      TEXT
+            );
+            """;
+            stmt.execute(sqlConfeccion);
+
+            //Tabla de Lavanderia
+
+            String sqlLavanderia = """
+            CREATE TABLE IF NOT EXISTS lavanderia(
+            idLavanderia           INTEGER PRIMARY KEY,
+            MaquileroLavanderia    TEXT,
+            PrecioLavanderia       TEXT
+            );
+            """;
+            stmt.execute(sqlLavanderia);
+
+            //Tabla de empaque
+
+            String sqlEmpaque = """
+            CREATE TABLE IF NOT EXISTS empaque(
+            idEmpaque           INTEGER PRIMARY KEY,
+            maquileroEmpaque    TEXT,
+            precioEmpaque       TEXT,
+            cantidadEntregadaEC TEXT,
+            restosPrimerasEntregadas TEXT,
+            segundasEntregadas TEXT
+            );
+            """;
+            stmt.execute(sqlEmpaque);
 
         } catch (SQLException e) {
             e.printStackTrace();

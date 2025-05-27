@@ -1,6 +1,5 @@
 package model;
 
-import java.time.LocalDate;
 import java.util.Date;
 
 public class Bordado {
@@ -21,28 +20,31 @@ public class Bordado {
         this.CantidadEntregada = CantidadEntregada;
     }
 
-    public int getidBordado() {return idBordado;}
-
-    public void setidBordado(int idBordado) {
+    public int getIdBordado() {return idBordado;}
+    public void setIdBordado(int idBordado) {
         this.idBordado = idBordado;
     }
-    public String getMaquileroBordado() {return MaquileroBordado;}
 
+    public String getMaquileroBordado() {return MaquileroBordado;}
     public void setMaquileroBordado(String MaquileroBordado) {
         this.MaquileroBordado = MaquileroBordado;
     }
+
     public Date getFechaEntradaBordado() {return FechaEntradaBordado;}
     public void setFechaEntradaBordado(Date FechaEntradaBordado) {
         this.FechaEntradaBordado = FechaEntradaBordado;
     }
+
     public Date getFechaSalidaBordado() {return FechaSalidaBordado;}
     public void setFechaSalidaBordado(Date FechaSalidaBordado) {
         this.FechaSalidaBordado = FechaSalidaBordado;
     }
+
     public String getCostoMaquilaBordado() {return CostoMaquilaBordado;}
     public void setCostoMaquilaBordado(String CostoMaquilaBordado) {
         this.CostoMaquilaBordado = CostoMaquilaBordado;
     }
+
     public String getCantidadEntregada() {return CantidadEntregada;}
     public void setCantidadEntregada(String CantidadEntregada) {
         this.CantidadEntregada = CantidadEntregada;

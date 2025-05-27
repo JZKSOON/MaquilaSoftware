@@ -2,6 +2,8 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -23,52 +25,48 @@
                     </font>
                 </Label>
 
-                <Label text="ID" textFill="WHITE" >
+                <Label text="ID" textFill="WHITE">
                     <font>
                         <Font name="Dubai Medium" size="15.0" />
                     </font></Label>
                 <TextField fx:id="idCorteField" prefHeight="25.0" prefWidth="179.0" promptText="1, 2, etc..." />
 
-                <Label text="Entrega de encogimientos" textFill="WHITE" >
+            <Label text="Corte" textFill="WHITE">
+                <font>
+                    <Font name="Dubai Medium" size="15.0" />
+                </font></Label>
+            <ComboBox fx:id="CorteMCField" prefWidth="150.0" />
+
+                <Label text="Entrega de encogimientos" textFill="WHITE">
                     <font>
                         <Font name="Dubai Medium" size="15.0" />
                     </font></Label>
-                <TextField fx:id="EntregaEncogimientosField" promptText="Fech/Na/Ok" />
+                <ComboBox fx:id="EntregaEncogimientosField" promptText="Fech/Na/Ok" />
+                <DatePicker fx:id="fechaPicker" visible="false" onAction="#manejarSeleccion"/>
 
-                <Label text="Liberacion de trazo" textFill="WHITE" >
+                <Label text="Liberacion de trazo" textFill="WHITE">
                     <font>
                         <Font name="Dubai Medium" size="15.0" />
                     </font></Label>
                 <TextField fx:id="LiberacionTrazoField" promptText="Fecha" />
 
-                <Label text="Fecha de corte" textFill="WHITE" >
+                <Label text="Fecha de corte" textFill="WHITE">
                     <font>
                         <Font name="Dubai Medium" size="15.0" />
                     </font></Label>
                 <TextField fx:id="FechaCorteField" promptText="Fecha" />
 
-            <Label text="Precio de corte" textFill="WHITE" >
+            <Label text="Precio de corte" textFill="WHITE">
                 <font>
                     <Font name="Dubai Medium" size="15.0" />
                 </font></Label>
                 <TextField fx:id="PrecioDeCorteField" />
 
-                <Label text="Cantidad cortada" textFill="WHITE" >
+                <Label text="Cantidad cortada" textFill="WHITE">
                     <font>
                         <Font name="Dubai Medium" size="15.0" />
                     </font></Label>
                     <TextField fx:id="CantidadCortadaField" promptText="Cantidad" />
-
-                <Label text="Faltante de Corte" textFill="WHITE" >
-                    <font>
-                        <Font name="Dubai Medium" size="15.0" />
-                    </font></Label>
-                <TextField id="FaltanteCorteField" promptText="Cant Programada-Cant Cortada" />
-
-
-            <Label text="Si la cantidad programada es mayor que la cortada= Faltante" textFill="WHITE" />
-            <Label text="Excedente Cortado" textFill="WHITE" />
-            <TextField promptText="Cant Programada-Cant Cortada" />
 
                 <Button fx:id="guardarBtn" onAction="#guardarCorte" style="-fx-background-color: #22374c;" text="Guardar" textFill="WHITE" VBox.vgrow="ALWAYS">
                     <font>
@@ -103,14 +101,13 @@
                 <TableView fx:id="corteTable" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
                         <TableColumn fx:id="idCorteColumn" prefWidth="80.0" text="ID" />
+                        <TableColumn fx:id="CorteMCColumn" prefWidth="80.0" text="Corte" />
                         <TableColumn fx:id="EntregaEncogimientosColumn" prefWidth="120.0" text="Entrega de encogimientos" />
                         <TableColumn fx:id="LiberacionTrazoColumn" prefWidth="100.0" text="Liberacion de trazo" />
                         <TableColumn fx:id="FechaCorteColumn" prefWidth="100.0" text="Fecha de corte" />
                         <TableColumn fx:id="PrecioDeCorteColumn" prefWidth="100.0" text="Precio de corte" />
                         <TableColumn fx:id="CantidadCortadaColumn" prefWidth="100.0" text="Cantidad cortada" />
-
-                        <TableColumn prefWidth="100.0" text="Faltante de corte" />
-                        <TableColumn prefWidth="100.0" text="Excedente Cortado" />
+                        <TableColumn fx:id="diferenciaColumn" prefWidth="120.0" text="Diferencia" />
                     </columns>
                 </TableView>
             </children>

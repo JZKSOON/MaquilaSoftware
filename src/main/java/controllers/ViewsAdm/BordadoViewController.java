@@ -9,6 +9,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import model.Bordado;
 
 import java.sql.*;
+import java.time.LocalDate;
 
 public class BordadoViewController {
 
@@ -51,11 +52,18 @@ public class BordadoViewController {
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery("SELECT * FROM bordado")) {
             while (rs.next()) {
+
+                long timestampEntrada = rs.getLong("FechaEntradaBordado");
+                Date fechaEntrada = new Date(timestampEntrada);
+
+                long timestampSalida = rs.getLong("FechaSalidaBordado");
+                Date fechaSalida = new Date(timestampSalida);
+
                 bordadoList.add(new Bordado(
                         rs.getInt("idBordado"),
                         rs.getString("MaquileroBordado"),
-                        rs.getDate("FechaSalidaBordado"),
-                        rs.getDate("FechaEntradaBordado"),
+                        fechaSalida,
+                        fechaEntrada,
                         rs.getString("CostoMaquilaBordado"),
                         rs.getString("CantidadEntregada")
                 ));
@@ -76,7 +84,7 @@ public class BordadoViewController {
             int id = Integer.parseInt(idBordadoField.getText());
 
             if (existeId(id)) {
-                mostrarAlerta("ID Existente", "Ya existe un corte con ese ID.");
+                mostrarAlerta("ID Existente", "Ya existe un registro con ese ID.");
                 return;
             }
 
@@ -84,10 +92,14 @@ public class BordadoViewController {
                  PreparedStatement stmt = conn.prepareStatement(
                          "INSERT INTO bordado (idBordado, MaquileroBordado, FechaEntradaBordado, FechaSalidaBordado, CostoMaquilaBordado, CantidadEntregada)" +
                                  "VALUES (?, ?, ?, ?, ?, ?)")) {
+
+                LocalDate fechaEntrada = FechaEntradaBordadoDate.getValue();
+                LocalDate fechaSalida = FechaSalidaBordadoDate.getValue();
+
                 stmt.setInt(1, id);
                 stmt.setString(2, MaquileroBordadoField.getValue());
-                stmt.setDate(3, Date.valueOf(FechaEntradaBordadoDate.getValue()));
-                stmt.setDate(4, Date.valueOf(FechaSalidaBordadoDate.getValue()));
+                stmt.setDate(3, fechaEntrada != null ? Date.valueOf(fechaEntrada) : null);
+                stmt.setDate(4, fechaSalida != null ? Date.valueOf(fechaSalida) : null);
                 stmt.setString(5, CostoMaquilaBordadoField.getText());
                 stmt.setString(6, CantidadEntregadaField.getText());
 
@@ -149,7 +161,7 @@ public class BordadoViewController {
 
         try (Connection conn = ConexionDB.conectar();
              PreparedStatement stmt = conn.prepareStatement("DELETE FROM bordado WHERE idBordado=?")) {
-            stmt.setInt(1, sel.getidBordado());
+            stmt.setInt(1, sel.getIdBordado());
             stmt.executeUpdate();
             mostrarAlerta("Eliminado", "Corte eliminado correctamente.");
             limpiarCampos();
@@ -163,7 +175,7 @@ public class BordadoViewController {
     private void seleccionarCorte() {
         Bordado m = bordadoTable.getSelectionModel().getSelectedItem();
         if (m != null) {
-            idBordadoField.setText(String.valueOf(m.getidBordado()));
+            idBordadoField.setText(String.valueOf(m.getIdBordado()));
             MaquileroBordadoField.setValue(m.getMaquileroBordado());
             FechaEntradaBordadoDate.setValue(((java.sql.Date)m.getFechaEntradaBordado()).toLocalDate());
             FechaSalidaBordadoDate.setValue(((java.sql.Date)m.getFechaSalidaBordado()).toLocalDate());
