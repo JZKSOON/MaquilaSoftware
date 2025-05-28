@@ -48,13 +48,13 @@
                     <font>
                         <Font name="Dubai Medium" size="15.0" />
                     </font></Label>
-                <TextField fx:id="LiberacionTrazoField" promptText="Fecha" />
+                <DatePicker fx:id="LiberacionTrazoField" promptText="Fecha" />
 
                 <Label text="Fecha de corte" textFill="WHITE">
                     <font>
                         <Font name="Dubai Medium" size="15.0" />
                     </font></Label>
-                <TextField fx:id="FechaCorteField" promptText="Fecha" />
+                <DatePicker fx:id="FechaCorteField" promptText="Fecha" />
 
             <Label text="Precio de corte" textFill="WHITE">
                 <font>
@@ -103,8 +103,8 @@
                         <TableColumn fx:id="idCorteColumn" prefWidth="80.0" text="ID" />
                         <TableColumn fx:id="CorteMCColumn" prefWidth="80.0" text="Corte" />
                         <TableColumn fx:id="EntregaEncogimientosColumn" prefWidth="120.0" text="Entrega de encogimientos" />
-                        <TableColumn fx:id="LiberacionTrazoColumn" prefWidth="100.0" text="Liberacion de trazo" />
-                        <TableColumn fx:id="FechaCorteColumn" prefWidth="100.0" text="Fecha de corte" />
+                        <TableColumn fx:id="liberacionTrazoColumn" prefWidth="100.0" text="Liberacion de trazo" />
+                        <TableColumn fx:id="fechaCorteColumn" prefWidth="100.0" text="Fecha de corte" />
                         <TableColumn fx:id="PrecioDeCorteColumn" prefWidth="100.0" text="Precio de corte" />
                         <TableColumn fx:id="CantidadCortadaColumn" prefWidth="100.0" text="Cantidad cortada" />
                         <TableColumn fx:id="diferenciaColumn" prefWidth="120.0" text="Diferencia" />

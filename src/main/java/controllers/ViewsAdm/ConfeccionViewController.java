@@ -15,7 +15,7 @@ import java.time.LocalDate;
 public class ConfeccionViewController {
 
     @FXML private TextField idConfeccionField;
-    @FXML private ComboBox<String> MaquileroConfeccionComboBox;
+    @FXML private ComboBox<String> MaquileroConfeccionComboBox, CorteCField;
     @FXML private TextField PrecioConfeccionField;
     @FXML private TextField CantidadAsignadaField;
     @FXML private DatePicker FechaEntregaCorteDate;
@@ -25,14 +25,18 @@ public class ConfeccionViewController {
     @FXML private TableColumn<Confeccion, String> MaquileroConfeccionColumn;
     @FXML private TableColumn<Confeccion, String> PrecioConfeccionColumn;
     @FXML private TableColumn<Confeccion, String> CantidadAsignadaColumn;
+    @FXML private TableColumn<Confeccion, String> CorteCColumn;
     @FXML private TableColumn<Confeccion, Date> FechaEntregaCorteColumn;
 
     private final ObservableList<Confeccion> confeccionList = FXCollections.observableArrayList();
 
     @FXML
     public void initialize() {
+
+
         ConexionDB.inicializar();
         cargarMaquilas();
+        cargarCortes();
         configurarColumnas();
         cargarDatos();
         confeccionTable.setOnMouseClicked(e -> seleccionarCorte());
@@ -40,6 +44,7 @@ public class ConfeccionViewController {
 
     private void configurarColumnas() {
         idConfeccionColumn        .setCellValueFactory(new PropertyValueFactory<>("idConfeccion"));
+        CorteCColumn              .setCellValueFactory(new PropertyValueFactory<>("corteC"));
         MaquileroConfeccionColumn .setCellValueFactory(new PropertyValueFactory<>("MaquileroConfeccion"));
         PrecioConfeccionColumn    .setCellValueFactory(new PropertyValueFactory<>("PrecioConfeccion"));
         CantidadAsignadaColumn    .setCellValueFactory(new PropertyValueFactory<>("CantidadAsignadaConfeccion"));
@@ -57,6 +62,7 @@ public class ConfeccionViewController {
                 Date fecha = new Date(ts);
                 confeccionList.add(new Confeccion(
                         rs.getInt("idConfeccion"),
+                        rs.getString("CorteC"),
                         rs.getString("MaquileroConfeccion"),
                         rs.getString("PrecioConfeccion"),
                         rs.getString("CantidadAsignada"),
@@ -75,25 +81,34 @@ public class ConfeccionViewController {
             mostrarAlerta("Campos obligatorios", "ID obligatorio.");
             return;
         }
+        try {
+            int id = Integer.parseInt(idConfeccionField.getText());
+
+            if (existeId(id)) {
+                mostrarAlerta("ID Existente", "Ya existe un registro con ese ID.");
+                return;
+            }
+
         try (Connection conn = ConexionDB.conectar();
              PreparedStatement stmt = conn.prepareStatement(
                      "INSERT INTO confeccion " +
-                             "(idConfeccion, MaquileroConfeccion, PrecioConfeccion, CantidadAsignada, FechaEntregaCorte) " +
-                             "VALUES (?, ?, ?, ?, ?)")) {
+                             "(idConfeccion, CorteC, MaquileroConfeccion, PrecioConfeccion, CantidadAsignada, FechaEntregaCorte) " +
+                             "VALUES (?, ?, ?, ?, ?, ?)")) {
 
-            int id = Integer.parseInt(idConfeccionField.getText());
             LocalDate ld = FechaEntregaCorteDate.getValue();
 
-            stmt.setInt   (1, id);
-            stmt.setString(2, MaquileroConfeccionComboBox.getValue());
-            stmt.setString(3, PrecioConfeccionField.getText());
-            stmt.setString(4, CantidadAsignadaField.getText());
-            stmt.setLong  (5, ld!=null ? Date.valueOf(ld).getTime() : 0L);
+            stmt.setInt(1, id);
+            stmt.setString(2, CorteCField.getValue());
+            stmt.setString(3, MaquileroConfeccionComboBox.getValue());
+            stmt.setString(4, PrecioConfeccionField.getText());
+            stmt.setString(5, CantidadAsignadaField.getText());
+            stmt.setLong(6, ld != null ? Date.valueOf(ld).getTime() : 0L);
 
             stmt.executeUpdate();
             mostrarAlerta("Éxito", "Registro guardado correctamente.");
             limpiarCampos();
             cargarDatos();
+            }
         } catch (NumberFormatException nf) {
             mostrarAlerta("Formato inválido", "ID debe ser numérico.");
         } catch (SQLException ex) {
@@ -109,17 +124,18 @@ public class ConfeccionViewController {
             return;
         }
         String sql = "UPDATE confeccion SET " +
-                "MaquileroConfeccion=?, PrecioConfeccion=?, CantidadAsignada=?, FechaEntregaCorte=? " +
+                "MaquileroConfeccion=?, CorteC=?, PrecioConfeccion=?, CantidadAsignada=?, FechaEntregaCorte=? " +
                 "WHERE idConfeccion=?";
         try (Connection conn = ConexionDB.conectar();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             LocalDate ld = FechaEntregaCorteDate.getValue();
-            stmt.setString(1, MaquileroConfeccionComboBox.getValue());
-            stmt.setString(2, PrecioConfeccionField.getText());
-            stmt.setString(3, CantidadAsignadaField.getText());
-            stmt.setLong  (4, ld!=null ? Date.valueOf(ld).getTime() : 0L);
-            stmt.setInt   (5, Integer.parseInt(idConfeccionField.getText()));
+            stmt.setString(1, CorteCField.getValue());
+            stmt.setString(2, MaquileroConfeccionComboBox.getValue());
+            stmt.setString(3, PrecioConfeccionField.getText());
+            stmt.setString(4, CantidadAsignadaField.getText());
+            stmt.setLong  (5, ld!=null ? Date.valueOf(ld).getTime() : 0L);
+            stmt.setInt   (6, Integer.parseInt(idConfeccionField.getText()));
 
             stmt.executeUpdate();
             mostrarAlerta("Actualizado", "Registro actualizado correctamente.");
@@ -155,6 +171,7 @@ public class ConfeccionViewController {
         Confeccion m = confeccionTable.getSelectionModel().getSelectedItem();
         if (m != null) {
             idConfeccionField.setText(String.valueOf(m.getIdConfeccion()));
+            CorteCField.setValue(m.getCorteC());
             MaquileroConfeccionComboBox.setValue(m.getMaquileroConfeccion());
             FechaEntregaCorteDate.setValue(
                     new java.sql.Date(m.getFechaEntregaCorteConfeccion().getTime())
@@ -198,6 +215,22 @@ public class ConfeccionViewController {
             ObservableList<String> items = FXCollections.observableArrayList();
             while (rs.next()) items.add(rs.getString("NombreMaquila"));
             MaquileroConfeccionComboBox.setItems(items);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void cargarCortes() {
+        try (Connection conn = ConexionDB.conectar();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery("SELECT NumCorte FROM cortes")) {
+
+            ObservableList<String> cortes = FXCollections.observableArrayList();
+            while (rs.next()) {
+                cortes.add(rs.getString("NumCorte"));
+            }
+            CorteCField.setItems(cortes);
+
         } catch (SQLException e) {
             e.printStackTrace();
         }

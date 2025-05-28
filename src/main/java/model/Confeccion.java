@@ -5,12 +5,14 @@ import java.util.Date;
 
 public class Confeccion {
     private int idConfeccion;
+    private String corteC;
     private String MaquileroConfeccion;
     private String PrecioConfeccion;
     private String CantidadAsignadaConfeccion;
     private Date FechaEntregaCorteConfeccion;
 
     public Confeccion(int idConfeccion,
+                      String corteC,
                       String MaquileroConfeccion,
                       String PrecioConfeccion,
                       String CantidadAsignadaConfeccion,
@@ -20,6 +22,7 @@ public class Confeccion {
         this.PrecioConfeccion = PrecioConfeccion;
         this.CantidadAsignadaConfeccion = CantidadAsignadaConfeccion;
         this.FechaEntregaCorteConfeccion = FechaEntregaCorteConfeccion;
+        this.corteC = corteC;
     }
 
     public int getIdConfeccion() {
@@ -27,6 +30,13 @@ public class Confeccion {
     }
     public void setIdConfeccion(int idConfeccion) {
         this.idConfeccion = idConfeccion;
+    }
+
+    public String getCorteC() {
+        return corteC;
+    }
+    public void setCorteC(String corteC) {
+        this.corteC = corteC;
     }
 
     public String getMaquileroConfeccion() {

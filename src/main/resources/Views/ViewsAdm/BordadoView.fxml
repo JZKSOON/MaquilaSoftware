@@ -31,6 +31,12 @@
                 </font></Label>
                 <TextField fx:id="idBordadoField" promptText="1, 2, etc..." />
 
+                <Label text="Corte" textFill="WHITE">
+                    <font>
+                        <Font name="Dubai Medium" size="15.0" />
+                    </font></Label>
+                <ComboBox fx:id="CorteBField" prefWidth="150.0" />
+
             <Label text="Maquilero" textFill="WHITE" >
                 <font>
                     <Font name="Dubai Medium" size="15.0" />
@@ -61,11 +67,6 @@
                     </font></Label>
                 <TextField fx:id="CantidadEntregadaField" />
 
-                <Label text="Comparativa Asignacion" textFill="WHITE" >
-                    <font>
-                        <Font name="Dubai Medium" size="15.0" />
-                    </font></Label>
-                <TextField promptText="Cant Cortada-Cant Entregada" />
     <Button fx:id="guardarBtn" onAction="#guardarBordado" style="-fx-background-color: #22374c;" text="Guardar" textFill="WHITE" VBox.vgrow="ALWAYS">
         <font>
             <Font name="Dubai Medium" size="16.0" />
@@ -96,11 +97,13 @@
                 <TableView fx:id="bordadoTable" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
                         <TableColumn fx:id="idBordadoColumn" prefWidth="80.0" text="ID" />
+                        <TableColumn fx:id="CorteBColumn" prefWidth="80.0" text="Corte" />
                         <TableColumn fx:id="MaquileroBordadoColumn" prefWidth="120.0" text="Maquilero" />
                         <TableColumn fx:id="FechaEntradaBordadoColumn" prefWidth="100.0" text="Fecha de entrada de bordado" />
                         <TableColumn fx:id="FechaSalidaBordadoColumn" prefWidth="100.0" text="Fecha de salida de bordado" />
                         <TableColumn fx:id="CostoMaquilaBordadoColumn" prefWidth="100.0" text="Costo maquila de bordado" />
                         <TableColumn fx:id="CantidadEntregadaColumn" prefWidth="100.0" text="Cantidad Entregada" />
+                        <TableColumn fx:id="diferenciaBColumn" prefWidth="120.0" text="Diferencia" />
                     </columns>
                 </TableView>
             </children>

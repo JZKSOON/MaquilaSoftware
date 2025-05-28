@@ -4,52 +4,43 @@ import java.time.LocalDate;
 
 public class Corte {
     private int idCorte;
-    private String CorteMC;
-    private String EntregaEncogimientos;
-    private String LiberacionTrazo;
-    private String FechaCorte;
-    private String PrecioDeCorte;
-    private String CantidadCortada;
+    private String corteMC;
+    private String entregaEncogimientos;
+    private LocalDate liberacionTrazo;
+    private LocalDate fechaCorte;
+    private String precioDeCorte;
+    private String cantidadCortada;
 
-    public Corte(int idCorte,String CorteMC, String EntregaEncogimientos, String LiberacionTrazo,
-                 String FechaCorte, String PrecioDeCorte, String CantidadCortada) {
+    public Corte(int idCorte, String corteMC, String entregaEncogimientos,
+                 LocalDate liberacionTrazo, LocalDate fechaCorte,
+                 String precioDeCorte, String cantidadCortada) {
         this.idCorte = idCorte;
-        this.CorteMC = CorteMC;
-        this.EntregaEncogimientos = EntregaEncogimientos;
-        this.LiberacionTrazo = LiberacionTrazo;
-        this.FechaCorte = FechaCorte;
-        this.PrecioDeCorte = PrecioDeCorte;
-        this.CantidadCortada = CantidadCortada;
+        this.corteMC = corteMC;
+        this.entregaEncogimientos = entregaEncogimientos;
+        this.liberacionTrazo = liberacionTrazo;
+        this.fechaCorte = fechaCorte;
+        this.precioDeCorte = precioDeCorte;
+        this.cantidadCortada = cantidadCortada;
     }
 
-    public int getIdCorte() {return idCorte;}
-    public void setIdCorte(int idCorte) {
-        this.idCorte = idCorte;
-    }
+    public int getIdCorte() { return idCorte; }
+    public void setIdCorte(int idCorte) { this.idCorte = idCorte; }
 
-    public String getCorteMC() {return CorteMC;}
-    public void setCorteMC(String CorteMC) {this.CorteMC = CorteMC;}
+    public String getCorteMC() { return corteMC; }
+    public void setCorteMC(String corteMC) { this.corteMC = corteMC; }
 
-    public String getEntregaEncogimientos() {return EntregaEncogimientos;}
-    public void setEntregaEncogimientos(String EntregaEncogimientos) {this.EntregaEncogimientos = EntregaEncogimientos;}
+    public String getEntregaEncogimientos() { return entregaEncogimientos; }
+    public void setEntregaEncogimientos(String entregaEncogimientos) { this.entregaEncogimientos = entregaEncogimientos; }
 
-    public String getLiberacionTrazo() {return LiberacionTrazo;}
-    public void setLiberacionTrazo(String LiberacionTrazo) {
-        this.LiberacionTrazo = LiberacionTrazo;
-    }
+    public LocalDate getLiberacionTrazo() { return liberacionTrazo; }
+    public void setLiberacionTrazo(LocalDate liberacionTrazo) { this.liberacionTrazo = liberacionTrazo; }
 
-    public String getFechaCorte() {return FechaCorte;}
-    public void setFechaCorte(String FechaCorte) {
-        this.FechaCorte = FechaCorte;
-    }
+    public LocalDate getFechaCorte() { return fechaCorte; }
+    public void setFechaCorte(LocalDate fechaCorte) { this.fechaCorte = fechaCorte; }
 
-    public String getPrecioDeCorte() {return PrecioDeCorte;}
-    public void setPrecioDeCorte(String PrecioDeCorte) {
-        this.PrecioDeCorte = PrecioDeCorte;
-    }
+    public String getPrecioDeCorte() { return precioDeCorte; }
+    public void setPrecioDeCorte(String precioDeCorte) { this.precioDeCorte = precioDeCorte; }
 
-    public String getCantidadCortada() {return CantidadCortada;}
-    public void setCantidadCortada(String CantidadCortada) {
-        this.CantidadCortada = CantidadCortada;
-    }
+    public String getCantidadCortada() { return cantidadCortada; }
+    public void setCantidadCortada(String cantidadCortada) { this.cantidadCortada = cantidadCortada; }
 }

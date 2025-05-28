@@ -31,6 +31,13 @@
                     </font></Label>
                 <TextField fx:id="idConfeccionField" promptText="1, 2, etc..." />
 
+                <Label text="Corte" textFill="WHITE">
+                    <font>
+                        <Font name="Dubai Medium" size="15.0" />
+                    </font></Label>
+                <ComboBox fx:id="CorteCField" prefWidth="150.0" />
+
+
                 <Label text="Maquilero" textFill="WHITE" >
                     <font>
                         <Font name="Dubai Medium" size="15.0" />
@@ -89,6 +96,7 @@
                 <TableView fx:id="confeccionTable" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
                         <TableColumn fx:id="idConfeccionColumn" prefWidth="80.0" text="ID" />
+                        <TableColumn fx:id="CorteCColumn" prefWidth="80.0" text="Corte" />
                         <TableColumn fx:id="MaquileroConfeccionColumn" prefWidth="120.0" text="Maquilero" />
                         <TableColumn fx:id="PrecioConfeccionColumn" prefWidth="100.0" text="Precio Maquila" />
                         <TableColumn fx:id="CantidadAsignadaColumn" prefWidth="100.0" text="Cantidad Asignada" />

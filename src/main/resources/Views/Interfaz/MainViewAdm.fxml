@@ -68,7 +68,7 @@
                         <Cursor fx:constant="HAND" />
                     </cursor>
                 </Button>
-                <Button fx:id="btnCorte" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleCorte" prefHeight="85.0" prefWidth="240.0" style="-fx-background-color: #1c3f60;" text="CORTE" textAlignment="JUSTIFY" textFill="WHITE" VBox.vgrow="ALWAYS">
+                <Button fx:id="btnCorte" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleCorte" prefHeight="85.0" prefWidth="240.0" style="-fx-background-color: #1c3f60;" text="MESA DE CORTE" textAlignment="JUSTIFY" textFill="WHITE" VBox.vgrow="ALWAYS">
                     <font>
                         <Font name="Franklin Gothic Heavy" size="28.0" />
                     </font>

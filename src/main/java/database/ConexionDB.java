@@ -87,6 +87,7 @@ public class ConexionDB {
             String sqlBordado = """
             CREATE TABLE IF NOT EXISTS bordado(
             idBordado INTEGER PRIMARY KEY,
+            CorteB TEXT,
             MaquileroBordado TEXT,
             FechaEntradaBordado TEXT,
             FechaSalidaBordado TEXT,
@@ -101,6 +102,7 @@ public class ConexionDB {
             String sqlConfeccion = """
             CREATE TABLE IF NOT EXISTS confeccion(
             idConfeccion           INTEGER PRIMARY KEY,
+            CorteC                 TEXT,
             MaquileroConfeccion    TEXT,
             PrecioConfeccion       TEXT,
             CantidadAsignada       TEXT,

@@ -9,15 +9,20 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import model.Corte;
 
 import java.sql.*;
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 public class CorteViewController {
 
-    @FXML private TextField idCorteField, LiberacionTrazoField, FechaCorteField, PrecioDeCorteField, CantidadCortadaField;
+    @FXML private TextField idCorteField,  PrecioDeCorteField, CantidadCortadaField;
     @FXML private ComboBox<String> CorteMCField, EntregaEncogimientosField;
-    @FXML private DatePicker fechaPicker;
+    @FXML private DatePicker fechaPicker, LiberacionTrazoField, FechaCorteField;
     @FXML private TableView<Corte> corteTable;
     @FXML private TableColumn<Corte, Integer> idCorteColumn;
+    @FXML private TableColumn<Corte, LocalDate> liberacionTrazoColumn, fechaCorteColumn;
 
     @FXML private TableColumn<Corte, String> CorteMCColumn, EntregaEncogimientosColumn, LiberacionTrazoColumn, FechaCorteColumn, PrecioDeCorteColumn, CantidadCortadaColumn,diferenciaColumn;
 
@@ -46,8 +51,8 @@ public class CorteViewController {
         idCorteColumn            .setCellValueFactory(new PropertyValueFactory<>("idCorte"));
         CorteMCColumn            .setCellValueFactory(new PropertyValueFactory<>("CorteMC"));
         EntregaEncogimientosColumn.setCellValueFactory(new PropertyValueFactory<>("EntregaEncogimientos"));
-        LiberacionTrazoColumn    .setCellValueFactory(new PropertyValueFactory<>("LiberacionTrazo"));
-        FechaCorteColumn         .setCellValueFactory(new PropertyValueFactory<>("FechaCorte"));
+        liberacionTrazoColumn.setCellValueFactory(new PropertyValueFactory<>("liberacionTrazo"));
+        fechaCorteColumn      .setCellValueFactory(new PropertyValueFactory<>("fechaCorte"));
         PrecioDeCorteColumn      .setCellValueFactory(new PropertyValueFactory<>("PrecioDeCorte"));
         CantidadCortadaColumn    .setCellValueFactory(new PropertyValueFactory<>("CantidadCortada"));
         diferenciaColumn.setCellValueFactory(cell -> {
@@ -73,12 +78,21 @@ public class CorteViewController {
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery("SELECT * FROM corte")) {
             while (rs.next()) {
+
+                LocalDate liberacion = rs.getString("Liberacion") != null
+                        ? convertirFecha(rs.getString("Liberacion"))
+                        : null;
+
+                LocalDate fechaCorte = rs.getString("Fecha") != null
+                        ? convertirFecha(rs.getString("Fecha"))
+                        : null;
+
                 corteList.add(new Corte(
                         rs.getInt("idCorte"),
                         rs.getString("CorteMC"),
                         rs.getString("EntregaEncogimientos"),
-                        rs.getString("Liberacion"),
-                        rs.getString("Fecha"),
+                        liberacion,
+                        fechaCorte,
                         rs.getString("Precio"),
                         rs.getString("Cantidad")
                 ));
@@ -110,8 +124,9 @@ public class CorteViewController {
                 stmt.setInt(1, id);
                 stmt.setString(2, CorteMCField.getValue());
                 stmt.setString(3, EntregaEncogimientosField.getValue());
-                stmt.setString(4, LiberacionTrazoField.getText());
-                stmt.setString(5, FechaCorteField.getText());
+                stmt.setDate(4, java.sql.Date.valueOf(LiberacionTrazoField.getValue()));
+                stmt.setDate(5, java.sql.Date.valueOf(FechaCorteField.getValue()));
+                stmt.setString(6, PrecioDeCorteField.getText());
                 stmt.setString(6, PrecioDeCorteField.getText());
                 stmt.setString(7, CantidadCortadaField.getText());
 
@@ -138,7 +153,7 @@ public class CorteViewController {
 
         String sql = """
             UPDATE corte SET
-              CorteMC=?, EntregaEncogimientos=?, Liberacion=?, Fecha=:?, Precio=?,
+              CorteMC=?, EntregaEncogimientos=?, Liberacion=?, Fecha=?, Precio=?,
               Cantidad=?
             WHERE idCorte=?
         """.replace(":?", "?");
@@ -148,8 +163,8 @@ public class CorteViewController {
 
             stmt.setString(1, CorteMCField.getValue());
             stmt.setString(2, EntregaEncogimientosField.getValue());
-            stmt.setString(3, LiberacionTrazoField.getText());
-            stmt.setString(4, FechaCorteField.getText());
+            stmt.setDate(3, java.sql.Date.valueOf(LiberacionTrazoField.getValue()));
+            stmt.setDate(4, java.sql.Date.valueOf(FechaCorteField.getValue()));
             stmt.setString(5, PrecioDeCorteField.getText());
             stmt.setString(6, CantidadCortadaField.getText());
             stmt.setInt(7, Integer.parseInt(idCorteField.getText()));
@@ -191,8 +206,8 @@ public class CorteViewController {
             idCorteField.setText(String.valueOf(m.getIdCorte()));
             CorteMCField.setValue(m.getCorteMC());
             EntregaEncogimientosField.setValue(m.getEntregaEncogimientos());
-            LiberacionTrazoField.setText(m.getLiberacionTrazo());
-            FechaCorteField.setText(m.getFechaCorte());
+            LiberacionTrazoField.setValue(m.getLiberacionTrazo());
+            FechaCorteField.setValue(m.getFechaCorte());
             PrecioDeCorteField.setText(m.getPrecioDeCorte());
             CantidadCortadaField.setText(m.getCantidadCortada());
         }
@@ -222,8 +237,8 @@ public class CorteViewController {
         idCorteField.clear();
         CorteMCField.setValue(null);
         EntregaEncogimientosField.setValue(null);
-        LiberacionTrazoField.clear();
-        FechaCorteField.clear();
+        LiberacionTrazoField.setValue(null);
+        FechaCorteField.setValue(null);
         PrecioDeCorteField.clear();
         CantidadCortadaField.clear();
     }
@@ -281,6 +296,29 @@ public class CorteViewController {
             });
         } else {
             fechaPicker.setVisible(false);
+        }
+    }
+    private LocalDate convertirFecha(String fecha) {
+        if (fecha == null || fecha.isEmpty()) return null;
+
+        // Intentamos detectar si el valor es un timestamp en milisegundos
+        if (fecha.matches("\\d+")) { // Es un número
+            try {
+                long timestamp = Long.parseLong(fecha);
+                return Instant.ofEpochMilli(timestamp).atZone(ZoneId.systemDefault()).toLocalDate();
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+                return null; // Manejar error en caso de que el número no sea válido
+            }
+        }
+
+        // Si no es timestamp, asumimos que el valor está en formato dd/MM/yy
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy");
+        try {
+            return LocalDate.parse(fecha, formatter);
+        } catch (DateTimeParseException e) {
+            e.printStackTrace();
+            return null; // Manejar el error devolviendo null o lo que necesites
         }
     }
 
