@@ -1,0 +1,9 @@
+.button-inactive {
+    -fx-background-color: #1c3f60; /* tono por defecto */
+    -fx-text-fill: white;
+}
+
+.button-active {
+    -fx-background-color: #3e6d91; /* tono más claro para el activo */
+    -fx-text-fill: white;
+}

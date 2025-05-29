@@ -10,19 +10,22 @@ public class Confeccion {
     private String PrecioConfeccion;
     private String CantidadAsignadaConfeccion;
     private Date FechaEntregaCorteConfeccion;
+    private String CantidadEntregada;
 
     public Confeccion(int idConfeccion,
                       String corteC,
                       String MaquileroConfeccion,
                       String PrecioConfeccion,
                       String CantidadAsignadaConfeccion,
-                      Date FechaEntregaCorteConfeccion) {
+                      Date FechaEntregaCorteConfeccion, String CantidadEntregada) {
         this.idConfeccion = idConfeccion;
         this.MaquileroConfeccion = MaquileroConfeccion;
         this.PrecioConfeccion = PrecioConfeccion;
         this.CantidadAsignadaConfeccion = CantidadAsignadaConfeccion;
         this.FechaEntregaCorteConfeccion = FechaEntregaCorteConfeccion;
         this.corteC = corteC;
+        this.CantidadEntregada = CantidadEntregada;
+
     }
 
     public int getIdConfeccion() {
@@ -65,5 +68,11 @@ public class Confeccion {
     }
     public void setFechaEntregaCorteConfeccion(Date fechaEntregaCorteConfeccion) {
         FechaEntregaCorteConfeccion = fechaEntregaCorteConfeccion;
+    }
+    public String getCantidadEntregada() {
+        return CantidadEntregada;
+    }
+    public void setCantidadEntregada(String cantidadEntregada) {
+        CantidadEntregada = cantidadEntregada;
     }
 }

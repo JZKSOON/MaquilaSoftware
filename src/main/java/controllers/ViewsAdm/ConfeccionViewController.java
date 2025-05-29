@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import model.Bordado;
 import model.Confeccion;
 
 import java.sql.*;
@@ -16,7 +17,7 @@ public class ConfeccionViewController {
 
     @FXML private TextField idConfeccionField;
     @FXML private ComboBox<String> MaquileroConfeccionComboBox, CorteCField;
-    @FXML private TextField PrecioConfeccionField;
+    @FXML private TextField PrecioConfeccionField, CantidadEntregadaField;
     @FXML private TextField CantidadAsignadaField;
     @FXML private DatePicker FechaEntregaCorteDate;
 
@@ -26,6 +27,8 @@ public class ConfeccionViewController {
     @FXML private TableColumn<Confeccion, String> PrecioConfeccionColumn;
     @FXML private TableColumn<Confeccion, String> CantidadAsignadaColumn;
     @FXML private TableColumn<Confeccion, String> CorteCColumn;
+    @FXML private TableColumn<Confeccion, String> CantidadEntregadaColumn;
+    @FXML private TableColumn<Confeccion, String> diferenciaCColumn;
     @FXML private TableColumn<Confeccion, Date> FechaEntregaCorteColumn;
 
     private final ObservableList<Confeccion> confeccionList = FXCollections.observableArrayList();
@@ -49,6 +52,23 @@ public class ConfeccionViewController {
         PrecioConfeccionColumn    .setCellValueFactory(new PropertyValueFactory<>("PrecioConfeccion"));
         CantidadAsignadaColumn    .setCellValueFactory(new PropertyValueFactory<>("CantidadAsignadaConfeccion"));
         FechaEntregaCorteColumn   .setCellValueFactory(new PropertyValueFactory<>("FechaEntregaCorteConfeccion"));
+        CantidadEntregadaColumn   .setCellValueFactory(new PropertyValueFactory<>("CantidadEntregada"));
+        diferenciaCColumn.setCellValueFactory(cell -> {
+            Confeccion fila      = cell.getValue();
+
+            int    Confeccionada   = Integer.parseInt(fila.getCantidadEntregada());
+            int    Cortada   = obtenerCantidadCortada(fila.getIdConfeccion());
+            int    diff      = Confeccionada - Cortada;
+            String texto;
+            if (diff > 0) {
+                texto = "Excedente " + diff;
+            } else if (diff < 0) {
+                texto = "Faltante " + (-diff);
+            } else {
+                texto = "0";
+            }
+            return new javafx.beans.property.SimpleStringProperty(texto);
+        });
     }
 
     private void cargarDatos() {
@@ -66,7 +86,8 @@ public class ConfeccionViewController {
                         rs.getString("MaquileroConfeccion"),
                         rs.getString("PrecioConfeccion"),
                         rs.getString("CantidadAsignada"),
-                        fecha
+                        fecha,
+                        rs.getString("CantidadEntregada")
                 ));
             }
         } catch (SQLException ex) {
@@ -92,8 +113,8 @@ public class ConfeccionViewController {
         try (Connection conn = ConexionDB.conectar();
              PreparedStatement stmt = conn.prepareStatement(
                      "INSERT INTO confeccion " +
-                             "(idConfeccion, CorteC, MaquileroConfeccion, PrecioConfeccion, CantidadAsignada, FechaEntregaCorte) " +
-                             "VALUES (?, ?, ?, ?, ?, ?)")) {
+                             "(idConfeccion, CorteC, MaquileroConfeccion, PrecioConfeccion, CantidadAsignada, FechaEntregaCorte, CantidadEntregada) " +
+                             "VALUES (?, ?, ?, ?, ?, ?, ?)")) {
 
             LocalDate ld = FechaEntregaCorteDate.getValue();
 
@@ -103,6 +124,7 @@ public class ConfeccionViewController {
             stmt.setString(4, PrecioConfeccionField.getText());
             stmt.setString(5, CantidadAsignadaField.getText());
             stmt.setLong(6, ld != null ? Date.valueOf(ld).getTime() : 0L);
+            stmt.setString(7, CantidadEntregadaField.getText());
 
             stmt.executeUpdate();
             mostrarAlerta("Éxito", "Registro guardado correctamente.");
@@ -124,7 +146,7 @@ public class ConfeccionViewController {
             return;
         }
         String sql = "UPDATE confeccion SET " +
-                "MaquileroConfeccion=?, CorteC=?, PrecioConfeccion=?, CantidadAsignada=?, FechaEntregaCorte=? " +
+                "CorteC=?, MaquileroConfeccion=?, PrecioConfeccion=?, CantidadAsignada=?, FechaEntregaCorte=?, CantidadEntregada=? " +
                 "WHERE idConfeccion=?";
         try (Connection conn = ConexionDB.conectar();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -135,7 +157,8 @@ public class ConfeccionViewController {
             stmt.setString(3, PrecioConfeccionField.getText());
             stmt.setString(4, CantidadAsignadaField.getText());
             stmt.setLong  (5, ld!=null ? Date.valueOf(ld).getTime() : 0L);
-            stmt.setInt   (6, Integer.parseInt(idConfeccionField.getText()));
+            stmt.setString(6, CantidadEntregadaField.getText());
+            stmt.setInt   (7, Integer.parseInt(idConfeccionField.getText()));
 
             stmt.executeUpdate();
             mostrarAlerta("Actualizado", "Registro actualizado correctamente.");
@@ -179,6 +202,7 @@ public class ConfeccionViewController {
             );
             PrecioConfeccionField.setText(m.getPrecioConfeccion());
             CantidadAsignadaField.setText(m.getCantidadAsignadaConfeccion());
+            CantidadEntregadaField.setText(m.getCantidadEntregada());
         }
     }
 
@@ -205,6 +229,8 @@ public class ConfeccionViewController {
         FechaEntregaCorteDate.setValue(null);
         PrecioConfeccionField.clear();
         CantidadAsignadaField.clear();
+        CantidadEntregadaField.clear();
+        CorteCField.setValue(null);
     }
 
     private void cargarMaquilas() {
@@ -234,5 +260,21 @@ public class ConfeccionViewController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    private int obtenerCantidadCortada(int idConfeccion) {
+        String sql = "SELECT Cantidad FROM corte WHERE idCorte = ?";
+        try (Connection conn = ConexionDB.conectar();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, idConfeccion);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return Integer.parseInt(rs.getString("Cantidad"));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
     }
 }

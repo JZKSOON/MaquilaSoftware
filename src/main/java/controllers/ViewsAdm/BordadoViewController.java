@@ -146,7 +146,7 @@ public class BordadoViewController {
 
         String sql = """
             UPDATE bordado SET
-              MaquileroBordado=?, CorteB=?, FechaEntradaBordado=?, FechaSalidaBordado=:?, CostoMaquilaBordado=?,
+              CorteB=?, MaquileroBordado=?, FechaEntradaBordado=?, FechaSalidaBordado=:?, CostoMaquilaBordado=?,
               CantidadEntregada=?
             WHERE idBordado=?
         """.replace(":?", "?");

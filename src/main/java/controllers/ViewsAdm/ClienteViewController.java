@@ -131,7 +131,7 @@ public class ClienteViewController {
 
         try (Connection conn = ConexionDB.conectar();
              PreparedStatement stmt = conn.prepareStatement(
-                     "UPDATE clientes SET razonSocial=?, nombre=?, celular=?, direccion=?, estado=?, municipio=?, cp=?, email=?, telefono=?, WHERE id=?")) {
+                     "UPDATE clientes SET razonSocial=?, nombre=?, celular=?, direccion=?, estado=?, municipio=?, cp=?, email=?, telefono=? WHERE id=?")) {
             stmt.setString(1, razonSocialField.getText());
             stmt.setString(2, nombreField.getText());
             stmt.setString(3, celularField.getText());

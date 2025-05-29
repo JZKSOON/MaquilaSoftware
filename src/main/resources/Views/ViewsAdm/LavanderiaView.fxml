@@ -31,17 +31,42 @@
                     </font></Label>
                 <TextField fx:id="idLavanderiaField" promptText="1, 2, etc..." />
 
+                <Label text="Corte" textFill="WHITE">
+                    <font>
+                        <Font name="Dubai Medium" size="15.0" />
+                    </font></Label>
+                <ComboBox fx:id="CorteLField" prefWidth="150.0" />
+
                 <Label text="Maquilero" textFill="WHITE" >
                     <font>
                         <Font name="Dubai Medium" size="15.0" />
                     </font></Label>
                 <ComboBox fx:id="MaquileroLavanderiaComboBox" prefWidth="150.0" />
 
+                <Label text="Cantidad asignada" textFill="WHITE" >
+                    <font>
+                        <Font name="Dubai Medium" size="15.0" />
+                    </font></Label>
+                <TextField fx:id="CantidadAsignadaLField" />
+
+                <Label text="Fecha de entrega de maquila a lavanderia" textFill="WHITE" >
+                    <font>
+                        <Font name="Dubai Medium" size="15.0" />
+                    </font></Label>
+                <DatePicker fx:id="FechaEntregaCorteLDate" />
+
                 <Label text="Precio Lavanderia" textFill="WHITE" >
                 <font>
                     <Font name="Dubai Medium" size="15.0" />
                 </font></Label>
                 <TextField fx:id="PrecioLavanderiaField" />
+
+                <Label text="Cantidad entregada" textFill="WHITE" >
+                    <font>
+                        <Font name="Dubai Medium" size="15.0" />
+                    </font></Label>
+                <TextField fx:id="CantidadEntregadaLField" />
+
 
 
                 <Button fx:id="guardarBtn" onAction="#guardarLavado" style="-fx-background-color: #22374c;" text="Guardar" textFill="WHITE" VBox.vgrow="ALWAYS">
@@ -74,8 +99,13 @@
                 <TableView fx:id="lavanderiaTable" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
                         <TableColumn fx:id="idLavanderiaColumn" prefWidth="80.0" text="ID" />
+                        <TableColumn fx:id="CorteLColumn" prefWidth="80.0" text="Corte" />
                         <TableColumn fx:id="MaquileroLavanderiaColumn" prefWidth="120.0" text="Maquilero" />
+                        <TableColumn fx:id="CantidadAsignadaLColumn" prefWidth="120.0" text="Maquilero" />
+                        <TableColumn fx:id="FechaEntregaCorteLColumn" prefWidth="100.0" text="Fecha de entrega de maquila a lavanderia" />
                         <TableColumn fx:id="PrecioLavanderiaColumn" prefWidth="100.0" text="Fecha de entrada de bordado" />
+                        <TableColumn fx:id="CantidadEntregadaLColumn" prefWidth="100.0" text="Cantidad entregada" />
+                        <TableColumn fx:id="diferenciaLColumn" prefWidth="100.0" text="Diferencia" />
                     </columns>
                 </TableView>
             </children>

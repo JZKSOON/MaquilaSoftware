@@ -1,4 +1,3 @@
-// controllers/ViewsAdm/EmpaqueViewController.java
 package controllers.ViewsAdm;
 
 import database.ConexionDB;
@@ -14,7 +13,9 @@ import java.sql.*;
 public class EmpaqueViewController {
 
     @FXML private TextField idEmpaqueField;
+    @FXML private ComboBox<String> CorteEField;
     @FXML private ComboBox<String> MaquileroEmpaqueComboBox;
+    @FXML private TextField CantidadAsignadaEmpaqueField;
     @FXML private TextField PrecioEmpaqueField;
     @FXML private TextField CantidadEntregadaECField;
     @FXML private TextField RestosPrimerasEntregadasField;
@@ -22,7 +23,9 @@ public class EmpaqueViewController {
 
     @FXML private TableView<Empaque> EmpaqueTable;
     @FXML private TableColumn<Empaque, String> idEmpaqueColumn;
+    @FXML private TableColumn<Empaque, String> CorteEColumn;
     @FXML private TableColumn<Empaque, String> MaquileroEmpaqueColumn;
+    @FXML private TableColumn<Empaque, String> CantidadAsignadaEmpaqueColumn;
     @FXML private TableColumn<Empaque, String> PrecioEmpaqueColumn;
     @FXML private TableColumn<Empaque, String> CantidadEntregadaECColumn;
     @FXML private TableColumn<Empaque, String> RestosPrimerasEntregadasColumn;
@@ -33,6 +36,7 @@ public class EmpaqueViewController {
     @FXML
     public void initialize() {
 
+        cargarCortes();
         cargarMaquilas();
         ConexionDB.inicializar();
         configurarColumnas();
@@ -42,7 +46,9 @@ public class EmpaqueViewController {
 
     private void configurarColumnas() {
         idEmpaqueColumn              .setCellValueFactory(new PropertyValueFactory<>("idEmpaque"));
+        CorteEColumn                  .setCellValueFactory(new PropertyValueFactory<>("corteE"));
         MaquileroEmpaqueColumn       .setCellValueFactory(new PropertyValueFactory<>("maquileroEmpaque"));
+        CantidadAsignadaEmpaqueColumn.setCellValueFactory(new PropertyValueFactory<>("cantidadAsignadaEmpaque"));
         PrecioEmpaqueColumn          .setCellValueFactory(new PropertyValueFactory<>("precioEmpaque"));
         CantidadEntregadaECColumn    .setCellValueFactory(new PropertyValueFactory<>("cantidadEntregadaEC"));
         RestosPrimerasEntregadasColumn.setCellValueFactory(new PropertyValueFactory<>("restosPrimerasEntregadas"));
@@ -58,7 +64,9 @@ public class EmpaqueViewController {
             while (rs.next()) {
                 empaqueList.add(new Empaque(
                         rs.getString("idEmpaque"),
+                        rs.getString("corteE"),
                         rs.getString("maquileroEmpaque"),
+                        rs.getString("cantidadAsignadaEmpaque"),
                         rs.getString("precioEmpaque"),
                         rs.getString("cantidadEntregadaEC"),
                         rs.getString("restosPrimerasEntregadas"),
@@ -79,20 +87,22 @@ public class EmpaqueViewController {
         }
         String sql = """
             INSERT INTO empaque
-              (idEmpaque, maquileroEmpaque, precioEmpaque,
+              (idEmpaque, corteE, maquileroEmpaque, cantidadAsignadaEmpaque, precioEmpaque,
                cantidadEntregadaEC, restosPrimerasEntregadas, segundasEntregadas)
-            VALUES (?, ?, ?, ?, ?, ?)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
         """;
 
         try (Connection conn = ConexionDB.conectar();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, idEmpaqueField.getText());
-            stmt.setString(2, MaquileroEmpaqueComboBox.getValue());
-            stmt.setString(3, PrecioEmpaqueField.getText());
-            stmt.setString(4, CantidadEntregadaECField.getText());
-            stmt.setString(5, RestosPrimerasEntregadasField.getText());
-            stmt.setString(6, SegundasEntregadasCField.getText());
+            stmt.setString(2, CorteEField.getValue());
+            stmt.setString(3, MaquileroEmpaqueComboBox.getValue());
+            stmt.setString(4, CantidadAsignadaEmpaqueField.getText());
+            stmt.setString(5, PrecioEmpaqueField.getText());
+            stmt.setString(6, CantidadEntregadaECField.getText());
+            stmt.setString(7, RestosPrimerasEntregadasField.getText());
+            stmt.setString(8, SegundasEntregadasCField.getText());
             stmt.executeUpdate();
 
             alerta("Éxito", "Registro guardado.");
@@ -112,7 +122,7 @@ public class EmpaqueViewController {
         }
         String sql = """
             UPDATE empaque SET
-              maquileroEmpaque=?, precioEmpaque=?, cantidadEntregadaEC=?,
+              maquileroEmpaque=?, corteE=?, cantidadAsignadaEmpaque, precioEmpaque=?, cantidadEntregadaEC=?,
               restosPrimerasEntregadas=?, segundasEntregadas=?
             WHERE idEmpaque=?
         """;
@@ -120,11 +130,13 @@ public class EmpaqueViewController {
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, MaquileroEmpaqueComboBox.getValue());
-            stmt.setString(2, PrecioEmpaqueField.getText());
-            stmt.setString(3, CantidadEntregadaECField.getText());
-            stmt.setString(4, RestosPrimerasEntregadasField.getText());
-            stmt.setString(5, SegundasEntregadasCField.getText());
-            stmt.setString(6, idEmpaqueField.getText());
+            stmt.setString(2, CorteEField.getValue());
+            stmt.setString(3, CantidadAsignadaEmpaqueField.getText());
+            stmt.setString(4, PrecioEmpaqueField.getText());
+            stmt.setString(5, CantidadEntregadaECField.getText());
+            stmt.setString(6, RestosPrimerasEntregadasField.getText());
+            stmt.setString(7, SegundasEntregadasCField.getText());
+            stmt.setString(8, idEmpaqueField.getText());
             stmt.executeUpdate();
 
             alerta("Actualizado", "Registro actualizado.");
@@ -161,7 +173,9 @@ public class EmpaqueViewController {
         Empaque m = EmpaqueTable.getSelectionModel().getSelectedItem();
         if (m != null) {
             idEmpaqueField.setText(m.getIdEmpaque());
+            CorteEField.setValue(m.getCorteE());
             MaquileroEmpaqueComboBox.setValue(m.getMaquileroEmpaque());
+            CantidadAsignadaEmpaqueField.setText(m.getCantidadAsignadaEmpaque());
             PrecioEmpaqueField.setText(m.getPrecioEmpaque());
             CantidadEntregadaECField.setText(m.getCantidadEntregadaEC());
             RestosPrimerasEntregadasField.setText(m.getRestosPrimerasEntregadas());
@@ -195,10 +209,24 @@ public class EmpaqueViewController {
 
     private void limpiarCampos() {
         idEmpaqueField.clear();
+        CorteEField.setValue(null);
         MaquileroEmpaqueComboBox.setValue(null);
+        CantidadAsignadaEmpaqueField.clear();
         PrecioEmpaqueField.clear();
         CantidadEntregadaECField.clear();
         RestosPrimerasEntregadasField.clear();
         SegundasEntregadasCField.clear();
+    }
+
+    private void cargarCortes() {
+        try (Connection conn = ConexionDB.conectar();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery("SELECT NumCorte FROM cortes")) {
+            ObservableList<String> cortes = FXCollections.observableArrayList();
+            while (rs.next()) cortes.add(rs.getString("NumCorte"));
+            CorteEField.setItems(cortes);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

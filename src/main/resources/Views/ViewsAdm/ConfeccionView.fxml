@@ -62,8 +62,11 @@
                     </font></Label>
                 <DatePicker fx:id="FechaEntregaCorteDate" />
 
-                <Label text="Comparativa Asignacion" textFill="WHITE" />
-                <TextField promptText="Cant Asignada-Cant Entregada" />
+                <Label text="Cantidad entregada" textFill="WHITE" >
+                    <font>
+                        <Font name="Dubai Medium" size="15.0" />
+                    </font></Label>
+                <TextField fx:id="CantidadEntregadaField" />
 
                 <Button fx:id="guardarBtn" onAction="#guardarConfeccion" style="-fx-background-color: #22374c;" text="Guardar" textFill="WHITE" VBox.vgrow="ALWAYS">
                     <font>
@@ -101,6 +104,8 @@
                         <TableColumn fx:id="PrecioConfeccionColumn" prefWidth="100.0" text="Precio Maquila" />
                         <TableColumn fx:id="CantidadAsignadaColumn" prefWidth="100.0" text="Cantidad Asignada" />
                         <TableColumn fx:id="FechaEntregaCorteColumn" prefWidth="100.0" text="Fecha de entrega de corte a maquila" />
+                        <TableColumn fx:id="CantidadEntregadaColumn" prefWidth="100.0" text="Cantidad entregada" />
+                        <TableColumn fx:id="diferenciaCColumn" prefWidth="120.0" text="Diferencia" />
                     </columns>
                 </TableView>
             </children>

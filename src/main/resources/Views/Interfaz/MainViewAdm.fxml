@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.interfaz.MainViewAdmController">
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.interfaz.MainViewAdmController">
     <children>
         <VBox fx:id="sidebar" alignment="CENTER" fillWidth="false" prefHeight="800.0" prefWidth="240.0" style="-fx-background-color: #2e658a;">
             <children>
@@ -24,7 +21,7 @@
                       </ImageView>
                </children>
             </Pane>
-                <Button fx:id="btnInicio" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleInicio" prefHeight="85.0" prefWidth="240.0" style="-fx-background-color: #1c3f60;" text="INICIO" textAlignment="JUSTIFY" textFill="WHITE" VBox.vgrow="ALWAYS">
+                <Button fx:id="btnInicio" styleClass="button-inactive" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleInicio" prefHeight="85.0" prefWidth="240.0" text="INICIO" textAlignment="JUSTIFY" textFill="WHITE" VBox.vgrow="ALWAYS">
                     <font>
                         <Font name="Franklin Gothic Heavy" size="28.0" />
                     </font>
@@ -35,7 +32,7 @@
                         <Cursor fx:constant="HAND" />
                     </cursor>
                 </Button>
-                <Button fx:id="btnCliente" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleCliente" prefHeight="85.0" prefWidth="240.0" style="-fx-background-color: #1c3f60;" text="CLIENTES" textAlignment="JUSTIFY" textFill="WHITE" VBox.vgrow="ALWAYS">
+                <Button fx:id="btnCliente" styleClass="button-inactive" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleCliente" prefHeight="85.0" prefWidth="240.0" text="CLIENTES" textAlignment="JUSTIFY" textFill="WHITE" VBox.vgrow="ALWAYS">
                     <font>
                         <Font name="Franklin Gothic Heavy" size="28.0" />
                     </font>
@@ -46,7 +43,7 @@
                         <Cursor fx:constant="HAND" />
                     </cursor>
                 </Button>
-                <Button fx:id="btnMaquilas" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleMaquilas" prefHeight="85.0" prefWidth="240.0" style="-fx-background-color: #1c3f60;" text="MAQUILAS" textAlignment="JUSTIFY" textFill="WHITE" VBox.vgrow="ALWAYS">
+                <Button fx:id="btnMaquilas" styleClass="button-inactive" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleMaquilas" prefHeight="85.0" prefWidth="240.0" text="MAQUILAS" textAlignment="JUSTIFY" textFill="WHITE" VBox.vgrow="ALWAYS">
                     <font>
                         <Font name="Franklin Gothic Heavy" size="28.0" />
                     </font>
@@ -57,7 +54,7 @@
                         <Cursor fx:constant="HAND" />
                     </cursor>
                 </Button>
-                <Button fx:id="btnCortes" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleCortes" prefHeight="85.0" prefWidth="240.0" style="-fx-background-color: #1c3f60;" text="CORTES" textAlignment="JUSTIFY" textFill="WHITE" VBox.vgrow="ALWAYS">
+                <Button fx:id="btnCortes" styleClass="button-inactive" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleCortes" prefHeight="85.0" prefWidth="240.0" text="CORTES" textAlignment="JUSTIFY" textFill="WHITE" VBox.vgrow="ALWAYS">
                     <font>
                         <Font name="Franklin Gothic Heavy" size="28.0" />
                     </font>
@@ -68,7 +65,18 @@
                         <Cursor fx:constant="HAND" />
                     </cursor>
                 </Button>
-                <Button fx:id="btnCorte" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleCorte" prefHeight="85.0" prefWidth="240.0" style="-fx-background-color: #1c3f60;" text="MESA DE CORTE" textAlignment="JUSTIFY" textFill="WHITE" VBox.vgrow="ALWAYS">
+                <Button fx:id="btnCorte" styleClass="button-inactive" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleCorte" prefHeight="85.0" prefWidth="240.0" text="MESA DE CORTE" textAlignment="JUSTIFY" textFill="WHITE" VBox.vgrow="ALWAYS">
+                    <font>
+                        <Font name="Franklin Gothic Heavy" size="26.0" />
+                    </font>
+                    <VBox.margin>
+                        <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                    </VBox.margin>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </Button>
+                <Button fx:id="btnBordado" styleClass="button-inactive" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleBordado" prefHeight="85.0" prefWidth="240.0" text="BORDADO" textAlignment="JUSTIFY" textFill="WHITE" VBox.vgrow="ALWAYS">
                     <font>
                         <Font name="Franklin Gothic Heavy" size="28.0" />
                     </font>
@@ -79,7 +87,7 @@
                         <Cursor fx:constant="HAND" />
                     </cursor>
                 </Button>
-                <Button fx:id="btnBordado" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleBordado" prefHeight="85.0" prefWidth="240.0" style="-fx-background-color: #1c3f60;" text="BORDADO" textAlignment="JUSTIFY" textFill="WHITE" VBox.vgrow="ALWAYS">
+                <Button fx:id="btnConfeccion" styleClass="button-inactive" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleConfeccion" prefHeight="85.0" prefWidth="240.0" text="CONFECCIÓN" textAlignment="JUSTIFY" textFill="WHITE" VBox.vgrow="ALWAYS">
                     <font>
                         <Font name="Franklin Gothic Heavy" size="28.0" />
                     </font>
@@ -90,7 +98,7 @@
                         <Cursor fx:constant="HAND" />
                     </cursor>
                 </Button>
-                <Button fx:id="btnConfeccion" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleConfeccion" prefHeight="85.0" prefWidth="240.0" style="-fx-background-color: #1c3f60;" text="CONFECCIÓN" textAlignment="JUSTIFY" textFill="WHITE" VBox.vgrow="ALWAYS">
+                <Button fx:id="btnLavanderia" styleClass="button-inactive" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleLavanderia" prefHeight="85.0" prefWidth="240.0" text="LAVANDERIA" textAlignment="JUSTIFY" textFill="WHITE" VBox.vgrow="ALWAYS">
                     <font>
                         <Font name="Franklin Gothic Heavy" size="28.0" />
                     </font>
@@ -101,18 +109,7 @@
                         <Cursor fx:constant="HAND" />
                     </cursor>
                 </Button>
-                <Button fx:id="btnLavanderia" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleLavanderia" prefHeight="85.0" prefWidth="240.0" style="-fx-background-color: #1c3f60;" text="LAVANDERIA" textAlignment="JUSTIFY" textFill="WHITE" VBox.vgrow="ALWAYS">
-                    <font>
-                        <Font name="Franklin Gothic Heavy" size="28.0" />
-                    </font>
-                    <VBox.margin>
-                        <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
-                    </VBox.margin>
-                    <cursor>
-                        <Cursor fx:constant="HAND" />
-                    </cursor>
-                </Button>
-                <Button fx:id="btnEmpaque" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleEmpaque" prefHeight="85.0" prefWidth="240.0" style="-fx-background-color: #1c3f60;" text="EMPAQUE" textAlignment="JUSTIFY" textFill="WHITE" VBox.vgrow="ALWAYS">
+                <Button fx:id="btnEmpaque" styleClass="button-inactive" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleEmpaque" prefHeight="85.0" prefWidth="240.0" text="EMPAQUE" textAlignment="JUSTIFY" textFill="WHITE" VBox.vgrow="ALWAYS">
                     <font>
                         <Font name="Franklin Gothic Heavy" size="28.0" />
                     </font>
@@ -123,7 +120,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
                 </Button>
-                <Button fx:id="btnCerrarSesion" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleCerrarSesion" prefHeight="71.0" prefWidth="240.0" style="-fx-background-color: #1c3f60;" text="CERRAR SESIÓN" textAlignment="JUSTIFY" textFill="WHITE" VBox.vgrow="ALWAYS">
+                <Button fx:id="btnCerrarSesion" styleClass="button-inactive" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleCerrarSesion" prefHeight="71.0" prefWidth="240.0" text="CERRAR SESIÓN" textAlignment="JUSTIFY" textFill="WHITE" VBox.vgrow="ALWAYS">
                     <font>
                         <Font name="Franklin Gothic Heavy" size="24.0" />
                     </font>

@@ -17,12 +17,16 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
-        //Iniciar con Ventana de Login y base de datos
-        database.ConexionDB.inicializar();
+        // Iniciar con Ventana de Login y base de datos
+        ConexionDB.inicializar();
         FXMLLoader loader = new FXMLLoader(getClass().getResource(Paths.LoginView));
         Parent root = loader.load();
 
         Scene scene = new Scene(root);
+
+        // *** Añadir hoja de estilos CSS ***
+
+
         stage.setMaximized(true);
         stage.setScene(scene);
         stage.setTitle("Admin");

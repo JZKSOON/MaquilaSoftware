@@ -31,11 +31,23 @@
                     </font></Label>
                 <TextField fx:id="idEmpaqueField" promptText="1, 2, etc..." />
 
+                <Label text="Corte" textFill="WHITE">
+                    <font>
+                        <Font name="Dubai Medium" size="15.0" />
+                    </font></Label>
+                <ComboBox fx:id="CorteEField" prefWidth="150.0" />
+
                 <Label text="Maquilero" textFill="WHITE" >
                     <font>
                         <Font name="Dubai Medium" size="15.0" />
                     </font></Label>
                 <ComboBox fx:id="MaquileroEmpaqueComboBox" prefWidth="150.0" />
+
+                <Label text="Cantidad Asignada" textFill="WHITE" >
+                    <font>
+                        <Font name="Dubai Medium" size="15.0" />
+                    </font></Label>
+                <TextField fx:id="CantidadAsignadaEmpaqueField" />
 
                 <Label text="Precio Empaque" textFill="WHITE" >
                     <font>
@@ -92,7 +104,9 @@
                 <TableView fx:id="EmpaqueTable" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
                         <TableColumn fx:id="idEmpaqueColumn" prefWidth="80.0" text="ID" />
+                        <TableColumn fx:id="CorteEColumn" prefWidth="80.0" text="Corte" />
                         <TableColumn fx:id="MaquileroEmpaqueColumn" prefWidth="120.0" text="Maquilero" />
+                        <TableColumn fx:id="CantidadAsignadaEmpaqueColumn" prefWidth="120.0" text="Cantidad Asignada" />
                         <TableColumn fx:id="PrecioEmpaqueColumn" prefWidth="100.0" text="Precio" />
                         <TableColumn fx:id="CantidadEntregadaECColumn" prefWidth="100.0" text="Cantidad entregada a Cliente" />
                         <TableColumn fx:id="RestosPrimerasEntregadasColumn" prefWidth="100.0" text="Restos Primeras entregadas" />

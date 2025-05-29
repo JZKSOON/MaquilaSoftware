@@ -1,19 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.chart.BarChart?>
-<?import javafx.scene.chart.CategoryAxis?>
-<?import javafx.scene.chart.NumberAxis?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ViewsAdm.InicioViewController">
+<VBox prefHeight="800.0" prefWidth="990.0" style="-fx-background-color: #2e658a;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ViewsAdm.ReporteProduccionViewController">
     <children>
-        <BarChart fx:id="barChartAvance" layoutX="14.0" title="Porcentaje de avance" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-            <xAxis>
-                <CategoryAxis label="Cortes" side="BOTTOM" fx:id="xAxis" />
-            </xAxis>
-            <yAxis>
-                <NumberAxis fx:id="yAxis" label="Porcentaje" side="LEFT" />
-            </yAxis>
-        </BarChart>
+      <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="141.0" text="Exportar a PDF" onAction="#exportToPdf" >
+         <VBox.margin>
+            <Insets left="930.0" right="5.0" top="5.0" />
+         </VBox.margin>
+      </Button>
+        <ScrollPane fitToHeight="true" prefHeight="800.0" prefWidth="990.0" VBox.vgrow="ALWAYS">
+            <content>
+                <TableView fx:id="reporteTable" prefHeight="764.0" prefWidth="3000.0">
+                    <columns>
+                        <TableColumn fx:id="clienteColumn" prefWidth="150.0" text="Cliente" />
+                        <TableColumn fx:id="corteColumn" prefWidth="80.0" text="Corte" />
+                        <TableColumn fx:id="cantidadProgramadaColumn" prefWidth="150.0" text="Cant. Programada" />
+                        <TableColumn fx:id="marcaColumn" prefWidth="80.0" text="Marca" />
+                        <TableColumn fx:id="lineaColumn" prefWidth="80.0" text="Línea" />
+                        <TableColumn fx:id="tipoTelaColumn" prefWidth="100.0" text="Tipo Tela" />
+                        <TableColumn fx:id="mesaCorteColumn" prefWidth="120.0" text="Mesa de Corte" />
+                        <TableColumn fx:id="entregaEncogimientosColumn" prefWidth="120.0" text="Entrega Encog." />
+                        <TableColumn fx:id="liberacionColumn" prefWidth="100.0" text="Liberación" />
+                        <TableColumn fx:id="fechaCorteColumn" prefWidth="100.0" text="Fecha Corte" />
+                        <TableColumn fx:id="cantidadCortadaColumn" prefWidth="100.0" text="Cant. Cortada" />
+                        <TableColumn fx:id="bordadoColumn" prefWidth="80.0" text="Bordado" />
+
+                        <TableColumn fx:id="confeccionColumn" prefWidth="120.0" text="Confección" />
+                        <TableColumn fx:id="cantidadAsignadaConfeccionColumn" prefWidth="100.0" text="Cant. Asig." />
+                        <TableColumn fx:id="cantidadEntregadaConfeccionColumn" prefWidth="100.0" text="Cant. Entreg." />
+                        <TableColumn fx:id="faltantesConfeccionColumn" prefWidth="80.0" text="Faltantes" />
+                        <TableColumn fx:id="porcentajeConfeccionColumn" prefWidth="130" text="Porcentaje Entrega" />
+
+                        <TableColumn fx:id="lavanderiaColumn" prefWidth="120.0" text="Lavandería" />
+                        <TableColumn fx:id="cantidadAsignadaLavanderiaColumn" prefWidth="100.0" text="Cant. Recib." />
+                        <TableColumn fx:id="cantidadEntregadaLavanderiaColumn" prefWidth="100.0" text="Cant. Entreg." />
+                        <TableColumn fx:id="faltantesLavanderiaColumn" prefWidth="80.0" text="Faltantes" />
+                        <TableColumn fx:id="porcentajeLavanderiaColumn" prefWidth="130.0" text="Porcentaje Entrega" />
+
+                        <TableColumn fx:id="empaqueColumn" prefWidth="120.0" text="Empaque" />
+                        <TableColumn fx:id="cantidadAsignadaEmpaqueColumn" prefWidth="100.0" text="Cant. Recib." />
+                        <TableColumn fx:id="cantidadEntregadaClientesColumn" prefWidth="100.0" text="Cant. Entreg. Cl." />
+                        <TableColumn fx:id="restosPrimerasColumn" prefWidth="80.0" text="Restos 1as" />
+                        <TableColumn fx:id="segundasEntregadasColumn" prefWidth="80.0" text="2das Entreg." />
+                        <TableColumn fx:id="totalEmpaqueColumn" prefWidth="80.0" text="Total" />
+                        <TableColumn fx:id="porcentajeEmpaqueColumn" prefWidth="130.0" text="Porcentaje Entrega" />
+                    </columns>
+                    <columnResizePolicy>
+                        <TableView fx:constant="UNCONSTRAINED_RESIZE_POLICY" />
+                    </columnResizePolicy>
+                </TableView>
+            </content>
+         <VBox.margin>
+            <Insets top="10.0" />
+         </VBox.margin>
+        </ScrollPane>
     </children>
-</AnchorPane>
+</VBox>

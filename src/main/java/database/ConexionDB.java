@@ -106,7 +106,8 @@ public class ConexionDB {
             MaquileroConfeccion    TEXT,
             PrecioConfeccion       TEXT,
             CantidadAsignada       TEXT,
-            FechaEntregaCorte      TEXT
+            FechaEntregaCorte      TEXT,
+            CantidadEntregada      TEXT
             );
             """;
             stmt.execute(sqlConfeccion);
@@ -115,9 +116,13 @@ public class ConexionDB {
 
             String sqlLavanderia = """
             CREATE TABLE IF NOT EXISTS lavanderia(
-            idLavanderia           INTEGER PRIMARY KEY,
-            MaquileroLavanderia    TEXT,
-            PrecioLavanderia       TEXT
+            idLavanderia              INTEGER PRIMARY KEY,
+            CorteL                    TEXT,
+            MaquileroLavanderia       TEXT,
+            CantidadAsignadaL         TEXT,
+            FechaEntregaCorteL        TEXT,
+            precio                    TEXT,
+            CantidadEntregadaL        TEXT
             );
             """;
             stmt.execute(sqlLavanderia);
@@ -127,7 +132,9 @@ public class ConexionDB {
             String sqlEmpaque = """
             CREATE TABLE IF NOT EXISTS empaque(
             idEmpaque           INTEGER PRIMARY KEY,
+            corteE              TEXT,
             maquileroEmpaque    TEXT,
+            cantidadAsignadaEmpaque TEXT,
             precioEmpaque       TEXT,
             cantidadEntregadaEC TEXT,
             restosPrimerasEntregadas TEXT,

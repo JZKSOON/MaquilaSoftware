@@ -499,7 +499,7 @@
     </routine>
     <schema id="191" parent="1" name="main">
       <Current>1</Current>
-      <LastIntrospectionLocalTimestamp>2025-05-28.06:52:32</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2025-05-29.11:56:08</LastIntrospectionLocalTimestamp>
     </schema>
     <argument id="192" parent="16">
       <ArgumentDirection>R</ArgumentDirection>
@@ -1701,104 +1701,104 @@
       <Position>6</Position>
       <StoredType>TEXT|0s</StoredType>
     </column>
-    <key id="589" parent="557">
+    <column id="589" parent="557" name="CantidadEntregada">
+      <Position>7</Position>
+      <StoredType>TEXT|0s</StoredType>
+    </column>
+    <key id="590" parent="557">
       <ColNames>idConfeccion</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="590" parent="558" name="idCorte">
+    <column id="591" parent="558" name="idCorte">
       <Position>1</Position>
       <StoredType>INTEGER|0s</StoredType>
     </column>
-    <column id="591" parent="558" name="CorteMC">
+    <column id="592" parent="558" name="CorteMC">
       <Position>2</Position>
       <StoredType>TEXT|0s</StoredType>
     </column>
-    <column id="592" parent="558" name="EntregaEncogimientos">
+    <column id="593" parent="558" name="EntregaEncogimientos">
       <Position>3</Position>
       <StoredType>TEXT|0s</StoredType>
     </column>
-    <column id="593" parent="558" name="Liberacion">
+    <column id="594" parent="558" name="Liberacion">
       <Position>4</Position>
       <StoredType>TEXT|0s</StoredType>
     </column>
-    <column id="594" parent="558" name="Fecha">
+    <column id="595" parent="558" name="Fecha">
       <Position>5</Position>
       <StoredType>TEXT|0s</StoredType>
     </column>
-    <column id="595" parent="558" name="Precio">
+    <column id="596" parent="558" name="Precio">
       <Position>6</Position>
       <StoredType>TEXT|0s</StoredType>
     </column>
-    <column id="596" parent="558" name="Cantidad">
+    <column id="597" parent="558" name="Cantidad">
       <Position>7</Position>
       <StoredType>TEXT|0s</StoredType>
     </column>
-    <key id="597" parent="558">
+    <key id="598" parent="558">
       <ColNames>idCorte</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="598" parent="559" name="idCortes">
+    <column id="599" parent="559" name="idCortes">
       <Position>1</Position>
       <StoredType>INTEGER|0s</StoredType>
     </column>
-    <column id="599" parent="559" name="NumCorte">
+    <column id="600" parent="559" name="NumCorte">
       <Position>2</Position>
       <StoredType>TEXT|0s</StoredType>
     </column>
-    <column id="600" parent="559" name="Cantidad">
+    <column id="601" parent="559" name="Cantidad">
       <Position>3</Position>
       <StoredType>TEXT|0s</StoredType>
     </column>
-    <column id="601" parent="559" name="Marca">
+    <column id="602" parent="559" name="Marca">
       <Position>4</Position>
       <StoredType>TEXT|0s</StoredType>
     </column>
-    <column id="602" parent="559" name="Linea">
+    <column id="603" parent="559" name="Linea">
       <Position>5</Position>
       <StoredType>TEXT|0s</StoredType>
     </column>
-    <column id="603" parent="559" name="TipoTela">
+    <column id="604" parent="559" name="TipoTela">
       <Position>6</Position>
       <StoredType>TEXT|0s</StoredType>
     </column>
-    <column id="604" parent="559" name="Trazo">
-      <Position>7</Position>
-      <StoredType>TEXT|0s</StoredType>
-    </column>
-    <column id="605" parent="559" name="FechTela">
-      <Position>8</Position>
-      <StoredType>TEXT|0s</StoredType>
-    </column>
-    <column id="606" parent="559" name="LlegTela">
-      <Position>9</Position>
-      <StoredType>TEXT|0s</StoredType>
-    </column>
-    <key id="607" parent="559">
+    <key id="605" parent="559">
       <ColNames>idCortes</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="608" parent="560" name="idEmpaque">
+    <column id="606" parent="560" name="idEmpaque">
       <Position>1</Position>
       <StoredType>INTEGER|0s</StoredType>
     </column>
-    <column id="609" parent="560" name="maquileroEmpaque">
+    <column id="607" parent="560" name="corteE">
       <Position>2</Position>
       <StoredType>TEXT|0s</StoredType>
     </column>
-    <column id="610" parent="560" name="precioEmpaque">
+    <column id="608" parent="560" name="maquileroEmpaque">
       <Position>3</Position>
       <StoredType>TEXT|0s</StoredType>
     </column>
-    <column id="611" parent="560" name="cantidadEntregadaEC">
+    <column id="609" parent="560" name="cantidadAsignadaEmpaque">
       <Position>4</Position>
       <StoredType>TEXT|0s</StoredType>
     </column>
-    <column id="612" parent="560" name="restosPrimerasEntregadas">
+    <column id="610" parent="560" name="precioEmpaque">
       <Position>5</Position>
       <StoredType>TEXT|0s</StoredType>
     </column>
-    <column id="613" parent="560" name="segundasEntregadas">
+    <column id="611" parent="560" name="cantidadEntregadaEC">
       <Position>6</Position>
+      <StoredType>TEXT|0s</StoredType>
+    </column>
+    <column id="612" parent="560" name="restosPrimerasEntregadas">
+      <Position>7</Position>
+      <StoredType>TEXT|0s</StoredType>
+    </column>
+    <column id="613" parent="560" name="segundasEntregadas">
+      <Position>8</Position>
       <StoredType>TEXT|0s</StoredType>
     </column>
     <key id="614" parent="560">
@@ -1809,83 +1809,99 @@
       <Position>1</Position>
       <StoredType>INTEGER|0s</StoredType>
     </column>
-    <column id="616" parent="561" name="MaquileroLavanderia">
+    <column id="616" parent="561" name="CorteL">
       <Position>2</Position>
       <StoredType>TEXT|0s</StoredType>
     </column>
-    <column id="617" parent="561" name="PrecioLavanderia">
+    <column id="617" parent="561" name="MaquileroLavanderia">
       <Position>3</Position>
       <StoredType>TEXT|0s</StoredType>
     </column>
-    <key id="618" parent="561">
-      <ColNames>idLavanderia</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="619" parent="562" name="idM">
-      <Position>1</Position>
-      <StoredType>INTEGER|0s</StoredType>
-    </column>
-    <column id="620" parent="562" name="NombreMaquila">
-      <Position>2</Position>
-      <StoredType>TEXT|0s</StoredType>
-    </column>
-    <column id="621" parent="562" name="AreaMaquila">
-      <Position>3</Position>
-      <StoredType>TEXT|0s</StoredType>
-    </column>
-    <column id="622" parent="562" name="nombreM">
+    <column id="618" parent="561" name="CantidadAsignadaL">
       <Position>4</Position>
       <StoredType>TEXT|0s</StoredType>
     </column>
-    <column id="623" parent="562" name="celularM">
+    <column id="619" parent="561" name="FechaEntregaCorteL">
       <Position>5</Position>
       <StoredType>TEXT|0s</StoredType>
     </column>
-    <column id="624" parent="562" name="direccionM">
+    <column id="620" parent="561" name="precio">
       <Position>6</Position>
       <StoredType>TEXT|0s</StoredType>
     </column>
-    <column id="625" parent="562" name="estadoM">
+    <column id="621" parent="561" name="CantidadEntregadaL">
       <Position>7</Position>
       <StoredType>TEXT|0s</StoredType>
     </column>
-    <column id="626" parent="562" name="municipioM">
-      <Position>8</Position>
-      <StoredType>TEXT|0s</StoredType>
-    </column>
-    <column id="627" parent="562" name="cpM">
-      <Position>9</Position>
-      <StoredType>TEXT|0s</StoredType>
-    </column>
-    <column id="628" parent="562" name="email">
-      <Position>10</Position>
-      <StoredType>TEXT|0s</StoredType>
-    </column>
-    <column id="629" parent="562" name="telefono">
-      <Position>11</Position>
-      <StoredType>TEXT|0s</StoredType>
-    </column>
-    <key id="630" parent="562">
-      <ColNames>idM</ColNames>
+    <key id="622" parent="561">
+      <ColNames>idLavanderia</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="631" parent="563" name="type">
+    <column id="623" parent="562" name="idM">
       <Position>1</Position>
-      <StoredType>TEXT|0s</StoredType>
+      <StoredType>INTEGER|0s</StoredType>
     </column>
-    <column id="632" parent="563" name="name">
+    <column id="624" parent="562" name="NombreMaquila">
       <Position>2</Position>
       <StoredType>TEXT|0s</StoredType>
     </column>
-    <column id="633" parent="563" name="tbl_name">
+    <column id="625" parent="562" name="AreaMaquila">
       <Position>3</Position>
       <StoredType>TEXT|0s</StoredType>
     </column>
-    <column id="634" parent="563" name="rootpage">
+    <column id="626" parent="562" name="nombreM">
+      <Position>4</Position>
+      <StoredType>TEXT|0s</StoredType>
+    </column>
+    <column id="627" parent="562" name="celularM">
+      <Position>5</Position>
+      <StoredType>TEXT|0s</StoredType>
+    </column>
+    <column id="628" parent="562" name="direccionM">
+      <Position>6</Position>
+      <StoredType>TEXT|0s</StoredType>
+    </column>
+    <column id="629" parent="562" name="estadoM">
+      <Position>7</Position>
+      <StoredType>TEXT|0s</StoredType>
+    </column>
+    <column id="630" parent="562" name="municipioM">
+      <Position>8</Position>
+      <StoredType>TEXT|0s</StoredType>
+    </column>
+    <column id="631" parent="562" name="cpM">
+      <Position>9</Position>
+      <StoredType>TEXT|0s</StoredType>
+    </column>
+    <column id="632" parent="562" name="email">
+      <Position>10</Position>
+      <StoredType>TEXT|0s</StoredType>
+    </column>
+    <column id="633" parent="562" name="telefono">
+      <Position>11</Position>
+      <StoredType>TEXT|0s</StoredType>
+    </column>
+    <key id="634" parent="562">
+      <ColNames>idM</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="635" parent="563" name="type">
+      <Position>1</Position>
+      <StoredType>TEXT|0s</StoredType>
+    </column>
+    <column id="636" parent="563" name="name">
+      <Position>2</Position>
+      <StoredType>TEXT|0s</StoredType>
+    </column>
+    <column id="637" parent="563" name="tbl_name">
+      <Position>3</Position>
+      <StoredType>TEXT|0s</StoredType>
+    </column>
+    <column id="638" parent="563" name="rootpage">
       <Position>4</Position>
       <StoredType>INT|0s</StoredType>
     </column>
-    <column id="635" parent="563" name="sql">
+    <column id="639" parent="563" name="sql">
       <Position>5</Position>
       <StoredType>TEXT|0s</StoredType>
     </column>
